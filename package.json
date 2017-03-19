@@ -1,6 +1,6 @@
 {
   "name": "icaros-ui",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "./lib/index.js",
   "theme": "ui",
   "author": {
@@ -10,8 +10,7 @@
   "bugs": {
     "url": "https://github.com/tuomashatakka/icaros-ui/issues"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "description": "Minimal to its core. Pleasing to the eye.",
   "devDependencies": {},
   "engines": {
