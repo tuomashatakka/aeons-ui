@@ -5,26 +5,16 @@
   color:            @text-color;
   background-color: transparent;
 
-  &:focus {
-    color: @text-color }
-
-  &:hover {
-    color: @text-color-highlight }
-
-  &.selected,
-  &.selected:hover {
-    color: @text-color-highlight;
-    &:hover {
-    }
-  }
-}
+  &:focus { color: @text-color }
+  &:hover { color: @text-color-highlight }
+  &.selected { color: @text-color-highlight }
+  &.selected:hover { color: @text-color-highlight }}
 
 .btn-variant (@color) {
   @bg: darken(@color, 10%);
   @hover: @color;
   @selected: @color;
-  .btn-background(@bg, @hover, @selected, @text-color-highlight);
-}
+  .btn-background(@bg, @hover, @selected, @text-color-highlight) }
 
 .btn {
   @padding: @component-padding * 0.5;
@@ -34,13 +24,11 @@
   line-height:  @size - @padding * 2;
   height:       @size;
   padding:      @padding @padding * 2;
-  .btn-background(@button-background-color, @button-background-color-hover, @button-background-color-selected, @text-color);
+  .btn-background(@button-background-color, @button-background-color-hover, @button-background-color-selected, @text-color) }
 
-}
 .btn.icon::before {
   vertical-align: middle;
-  margin-top: -2px;
-}
+  margin-top: -2px }
 
 .btn.btn-primary {
   .btn-variant(@background-color-info);
