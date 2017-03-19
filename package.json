@@ -17,7 +17,7 @@
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "homepage": "https://github.com/tuomashatakka/io",
+  "homepage": "https://github.com/tuomashatakka/icaros-ui",
   "keywords": [
     "dark",
     "clean",
