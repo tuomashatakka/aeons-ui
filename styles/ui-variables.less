@@ -1,9 +1,8 @@
 
-@import 'syntax-variables';
 @import 'ui-variables-custom';
 
 // Text
-@text-color:            @color-ui-fg;
+@text-color:            @color-foreground;
 @text-color-subtle:     fadeout(@text-color, 40%);
 @text-color-highlight:  lighten(@text-color, 20%);
 @text-color-selected:   @color-selected;
@@ -26,9 +25,9 @@
 @background-color-selected:  lighten(@base-background-color, 8%);
 
 // Base
-@app-background-color:  @color-level-3;
+@app-background-color:  @color-background;
 @base-background-color: @color-background;
-@base-border-color:     @color-ui-border;
+@base-border-color:     darken(@color-background, 2%);
 
 // Components
 @pane-item-background-color:        @color-background;
@@ -51,7 +50,7 @@
 
 @tab-bar-background-color:          transparent;
 @tab-background-color:              @color-background;
-@tab-background-color-active:       @syntax-background-color;
+@tab-background-color-active:       @base-background-color;
 @tab-bar-border-color:              @base-border-color;
 @tab-border-color:                  @base-border-color;
 
@@ -64,8 +63,8 @@
 @ui-site-color-4:                   #f6599b;
 @ui-site-color-5:                   #80eb5a;
 
-@scrollbar-color:                   @color-level-1;
-@scrollbar-color-editor:            @color-level-2;
+@scrollbar-color:                   @color-background;
+@scrollbar-color-editor:            @color-background;
 @scrollbar-background-color:        transparent;
 @scrollbar-background-color-editor: transparent;
 

@@ -1,6 +1,7 @@
 
 .settings-view {
   @padding: @component-padding * 1.5;
+  padding-top: @tab-height !important;
 
   .package-card {
     background: fade(white, 0.2);
@@ -16,4 +17,15 @@
       float: none !important;
       font-size: 0.75em;
       color: fade(@text-color, 50%);
-      text-align: right }}}
+      text-align: right }}
+
+.output-indicator-input {
+  padding: @padding @padding * 3;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  h3 { flex: 1 0 100% }
+  .badge { flex: 0 1 2.5em; text-align: center; }
+  input { flex: 1 1 50% }
+}}

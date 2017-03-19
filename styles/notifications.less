@@ -1,0 +1,125 @@
+                                                                                                                                                                                                                                                                                                                                                                        /*
+notifications ⟩ components ⟩ icaros-ui
+author      Tuomas Hatakka
+email       tuomas.hatakka@gmail.com
+copyright   Copyright (C) 2016-2017 Tuomas Hatakka
+
+✕ Namespace                                                                                                                                                                                                                                                                                                                                                          */
+atom-notifications {
+
+.text(normal);
+@shadow-opacity:        10%;
+@shadow-blur:           1rem;
+@shadow:                0 @shadow-blur/3 @shadow-blur fade(black, @shadow-opacity);
+@padding:               @component-padding / 3 * 2;
+@left-bar-width:        @notification-icon-size;
+@border-radius:         @component-border-radius;
+@gutter:                1px;
+
+atom-notification {
+  --background-color:   @notification-background-color;
+  --text-color:         @notification-text-color;
+  box-shadow:           @shadow;
+  margin:               0 0 @gutter;
+  padding:              0 0 0 @left-bar-width;
+  border-radius:        @border-radius !important;
+  transition:           @transition-default;
+
+  &::after,
+  &:not(.has-close) .close-all {
+    display:            none }
+
+  &.icon::before {
+    position:           absolute;
+    box-sizing:         border-box;
+    text-align:         center;
+    display:            block;
+    height:             auto;
+    top:                0;
+    left:               0;
+    bottom:             0;
+    background:         transparent;
+    line-height:        auto;
+    margin:             -@left-bar-width/2 0;
+    transform:          none;
+    top:                50%;
+    width:              @left-bar-width;
+    height:             @left-bar-width;
+    line-height:        @left-bar-width/3;
+    padding:            @left-bar-width/3;
+    font-size:          @left-bar-width/3;
+    border-radius:      @border-radius 0 0
+                        @border-radius }
+
+  .content {
+    padding: @padding }
+
+  .close,
+  .close::before {
+    transition: @transition-default;
+    color: inherit !important }
+
+  .btn-toolbar {
+    display: flex;
+    margin: 0 -2 * @padding -@padding !important;
+
+    & > *,
+    & > .btn.btn {
+      flex: 1 1 auto }}
+
+.btn, .btn.close-all,
+.btn-success,
+.btn-default.btn-success {
+  &.close-all {
+
+  &:hover {
+    }}}
+
+.content {
+  font-size: 1em;
+  background-color: var(--background-color) !important }
+
+.message {
+  .type(input);
+  padding: @padding/2 @padding !important;
+  color: @notification-text-color }
+
+.detail {
+  color: var(--text-color);
+  padding-top: 0;
+  border-width: 0;
+  line-height: 1.5em }
+
+.meta {
+  color: var(--text-color);
+  border-width: 0 }
+
+.stack-toggle {
+  border-bottom: 1px solid fade(@text-color-subtle, 5%);
+  color: inherit;
+  *::before { font-size: inherit } }
+
+.meta {
+  color: var(--text-color);
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .description a { color: @text-color-info }
+  .btn-toolbar .icon-clippy { color: inherit }}}
+
+                                                                                                                                                                                                                                                                                                                                                                              /*
+✕ State colors                                                                                                                                                                                                                                                                                                                                                          */
+.notification-highlight(info, @text-color-info, @background-color-info);
+.notification-highlight(success, @text-color-success, @background-color-success);
+.notification-highlight(warning, @text-color-warning, @background-color-warning);
+.notification-highlight(error, @text-color-error, @background-color-error);
+.notification-highlight(fatal, @text-color-error, @background-color-error);
+.notification-highlight(@state: info, @fg, @bg) {
+
+   @cls: ~"atom-notification.icon.@{state}";
+   @{cls} {
+     color:      mix(@fg, @text-color, 75%);
+     background: mix(@bg, @notification-background-color, 10%);
+   &::before {
+     color:      inherit;
+     background: transparent }}}}
