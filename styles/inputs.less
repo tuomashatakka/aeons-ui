@@ -1,0 +1,41 @@
+@input-size: @component-line-height * 1rem;
+
+input,
+textarea,
+select,
+.form-control,
+atom-text-editor[mini] {
+  .type(input);
+  @size:          @input-size;
+  @padding:       0.25 * @component-padding;
+  border-radius:  @component-border-radius-round;
+  color:          @text-color-highlight;
+  line-height:    @size;
+  min-height:     @size;
+  max-height:     @size + 2 * @padding;
+  height:         @size + 2 * @padding;
+  padding:        @padding @padding * 3;
+  box-sizing:     content-box;
+  border:         none;
+  box-shadow:     none;
+  transition:     @transition-default }
+
+input[type="checkbox"] {
+  @size: 1.3em;
+  padding:    0;
+  margin-top: @size / 2 !important;
+  width:      @size;
+  height:     @size;
+  min-height: @size }
+
+atom-text-editor[mini] {
+  height: @input-size;
+
+  .cursor {
+    border-color: #fff; }
+  .selection .region {
+    background-color: lighten(@input-background-color, 10%); }
+
+  &.is-focused {
+    background-color: lighten(@input-background-color, 5%);
+    .selection .region { background-color: desaturate(@background-color-info, 50%) }}}

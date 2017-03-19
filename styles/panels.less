@@ -1,0 +1,51 @@
+@import "buttons.less";
+
+.panel {
+}
+
+.panel.bordered {
+  border:        1px solid @base-border-color;
+  border-radius: @component-border-radius }
+
+atom-panel,
+.tool-panel {
+
+  .text(normal);
+  position:         relative;
+  background-color: @tool-panel-background-color;
+  border-color: @tool-panel-border-color;
+
+  &.bottom:not(:empty),
+  &.footer:not(:empty),
+  &.panel-bottom:not(:empty),
+  &.panel-footer:not(:empty) {
+  }}
+
+.inset-panel {
+  position: relative;
+  background-color: @inset-panel-background-color }
+
+.is-blurred {
+  atom-panel,
+  .inset-panel {
+  }
+}
+
+.panel-heading {
+
+  .text(normal);
+  border-bottom-color: @panel-heading-border-color;
+  border-top-color: fadein(@background-color-highlight, 10%);
+  background-color: transparent;
+
+  .btn {
+    padding-left: @component-padding / 2;
+    padding-right: @component-padding / 2;
+
+    @bg:        lighten(@button-background-color, 10%);
+    @hover:     lighten(@button-background-color-hover, 10%);
+    @selected:  lighten(@button-background-color-selected, 10%);
+    @text:      lighten(@text-color, 10%);
+    .btn-background(@bg, @hover, @selected, @text);
+  }
+}

@@ -1,0 +1,30 @@
+.tree-view {
+  font-size: @list-font-size;
+  background: @tree-view-background-color;
+
+  .selected::before {
+    background: lighten(@background-color-selected, 5%);
+    height: @component-line-height * 1rem;
+  }
+}
+
+.tree-view-resizer {
+  .tree-view-resize-handle {
+    width: 0.5rem }}
+
+.focusable-panel {
+  opacity: 1;
+
+  &:focus {
+    .selected::before {
+      background: @background-color-selected;
+      height: @component-line-height * 1rem;
+    }
+  }
+}
+
+[data-show-on-right-side=true] {
+  .tree-view .selected:before,
+  .focusable-panel {
+  }
+}

@@ -1,0 +1,26 @@
+.pane-item {
+  .panel {
+    border-color: fadeout(@inset-panel-border-color, 30%) }}
+
+.pane-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: linear-gradient(mix(@app-background-color, black) 20%, transparent 100%);
+  z-index: -1 }
+
+atom-pane-container {
+  atom-pane {
+    background-color: lighten(@app-background-color, 4%);
+
+    &:focus {
+      background-color: @app-background-color }}
+
+  atom-pane-axis.horizontal > * {
+    &:last-child { border-right: none; }}
+
+  atom-pane-axis.vertical > * {
+    &:last-child { border-bottom: none; }}}

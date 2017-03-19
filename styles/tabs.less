@@ -1,0 +1,102 @@
+
+@modified: ~".modified:not(:hover)";
+@modified-hover: ~".modified:hover";
+
+.tab-bar {
+
+  @tab-size: @tab-height;
+  @content-height: @tab-size - (2 * @component-padding);
+  height: @tab-size;
+
+  .tab {
+    height: @tab-size;
+    transition: @transition-default, width @transition-duration;
+    background: @tab-background-color;
+    padding: @component-padding @component-padding / 2 }
+
+  .tab,
+  .tab .close-icon {
+    font-size: 1em;
+    line-height: @content-height }
+
+  // Title text
+  .tab .title {
+    .type(tabs);
+    font-size: @tab-font-size }
+
+  .tab .icon::before {
+    vertical-align: middle;
+    margin-top: -3px }
+
+  // States
+  .tab:hover,
+  .tab.active {
+    color: @text-color-highlight }
+
+  .tab.active {
+    flex-grow: 1;
+    background: @tab-background-color-active;
+    background: transparent }
+
+  .tab:hover {
+    background: lighten(@tab-background-color-active, 8%) }
+
+  .tab.active:hover {
+    background: lighten(@tab-background-color-active, 5%);
+    background: transparent }
+
+  // Close icon state overrides & transforms
+  .tab { .tab-icon }
+  .tab:hover,
+  .tab@{modified-hover} { .tab-icon(hover) }
+  .tab@{modified} { .tab-icon(modified) }
+
+  // Close icon hover color
+  .tab .close-icon:hover,
+  .tab@{modified-hover} .close-icon:hover {
+    background-color: @background-color-error;
+    color: @text-color-error }
+}
+
+// Helper mixin for tab icon states
+.tab-icon(@state: none) {
+  @y: @component-padding + (@content-height / 2) - 0.5rem;
+  @x: @y / 2;
+  @regular: ~".@{state}:not(:hover)";
+  @hover: ~".@{state}:hover";
+
+  .close-icon {
+    top:           @y;
+    right:         @x;
+    height:        1rem;
+    line-height:   1rem;
+    width:         1rem;
+    border:        none;
+    transition:    transform @transition-duration, @transition-default;
+    border-radius: 50%;
+    cursor:        pointer }
+
+  .close-icon::before {
+    display: block;
+    line-height: inherit;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: inherit;
+    line-height: 1 }}
+
+.tab-icon(modified) {
+
+  .close-icon::before {
+    display: block }
+
+  .close-icon {
+    transform: rotate(45deg) }}
+
+.tab-icon(hover) {
+
+  .close-icon {
+    background: lighten(@tab-background-color-active, 10%);
+    color: @text-color-highlight }}

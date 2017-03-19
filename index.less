@@ -1,0 +1,33 @@
+@import "styles/ui-variables";
+@import "styles/ui-mixins";
+
+@import "styles/atom";
+@import "styles/buttons";
+@import "styles/inputs";
+@import "styles/git";
+@import "styles/lists";
+@import "styles/messages";
+@import "styles/nav";
+@import "styles/overlays";
+@import "styles/panels";
+@import "styles/panes";
+@import "styles/progress";
+@import "styles/settings";
+@import "styles/sites";
+@import "styles/tabs";
+@import "styles/text";
+@import "styles/title-bar";
+@import "styles/tooltips";
+@import "styles/tree-view";
+@import "styles/utilities";
+
+.tab-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  z-index: 20 }
+
+atom-pane-container atom-pane .item-views > atom-text-editor:not(.mini) {
+  padding-top: @tab-height }
