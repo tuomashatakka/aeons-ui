@@ -2,6 +2,7 @@
 .text(normal) {
   font-weight:  @font-weight;
   color:        @text-color }
+
 .text(subtle) {
   font-weight:  @font-weight;
   color:        @text-color-subtle }
@@ -12,19 +13,20 @@
   .text(highlight) }
 
 .text(info) {
-  color: mix(@text-color-info, @text-color) }
+  color: @text-color-info }
 .text(success) {
-  color: mix(@text-color-success, @text-color) }
+  color: @text-color-success }
 .text(warning) {
-  color: mix(@text-color-warning, @text-color) }
+  color: @text-color-warning }
 .text(error) {
-  color: mix(@text-color-error, @text-color) }
+  color: @text-color-error }
 
 .type(heading) {
   font-family:    @font-family;
   font-weight:    100 !important;
   letter-spacing: 0.05em;
   text-transform: uppercase }
+
 .type(tabs) {
   font-size:      @tab-font-size;
   font-weight:    400;
@@ -33,6 +35,7 @@
   .type(tabs);
   font-weight:    400;
   letter-spacing: 0.05em }
+
 .type(input) {
   font-family: @font-family;
   font-size: @input-font-size;
