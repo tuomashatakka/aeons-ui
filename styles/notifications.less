@@ -54,50 +54,53 @@ atom-notification {
   .content {
     padding: @padding }
 
+  // X icon at the upper-right corner
   .close,
   .close::before {
-    transition: @transition-default;
+    transition: @transition-default, opacity @transition-duration;
     color: inherit !important }
 
+  // Bottom button toolbar
   .btn-toolbar {
     display: flex;
     margin: 0 -2 * @padding -@padding !important;
 
-    & > *,
-    & > .btn.btn {
-      flex: 1 1 auto }}
+    // Bottom buttons
+    & > *, & > .btn.btn { flex: 1 1 auto }}
 
 .btn, .btn.close-all,
 .btn-success,
 .btn-default.btn-success {
   &.close-all {
-
-  &:hover {
-    }}}
+  &:hover {}}}
 
 .content {
-  font-size: 1em;
+  font-size:    1em;
   background-color: var(--background-color) !important }
 
 .message {
   .type(input);
-  padding: @padding/2 @padding !important;
-  color: @notification-text-color }
+  padding:      @padding/2 @padding !important;
+  color:        @notification-text-color }
 
 .detail {
-  color: var(--text-color);
-  padding-top: 0;
+  color:        var(--text-color);
   border-width: 0;
-  line-height: 1.5em }
+  padding-top:  0;
+  line-height:  1.5em }
+
+.detail-content {
+  font-size:    0.7em;
+  line-height:  1.5em }
 
 .meta {
-  color: var(--text-color);
+  color:        var(--text-color);
   border-width: 0 }
 
 .stack-toggle {
   border-bottom: 1px solid fade(@text-color-subtle, 5%);
-  color: inherit;
-  *::before { font-size: inherit } }
+  color:        inherit;
+  *::before {   font-size: inherit } }
 
 .meta {
   color: var(--text-color);
@@ -106,6 +109,9 @@ atom-notification {
 
   .description a { color: @text-color-info }
   .btn-toolbar .icon-clippy { color: inherit }}}
+
+
+atom-notification.error code { }
 
                                                                                                                                                                                                                                                                                                                                                                               /*
 ✕ State colors                                                                                                                                                                                                                                                                                                                                                          */
@@ -117,9 +123,15 @@ atom-notification {
 .notification-highlight(@state: info, @fg, @bg) {
 
    @cls: ~"atom-notification.icon.@{state}";
+
+   @{cls} code,
+   @{cls} pre {
+     .state-inverse(@state) }
+
    @{cls} {
      color:      mix(@fg, @text-color, 75%);
      background: mix(@bg, @notification-background-color, 10%);
-   &::before {
-     color:      inherit;
-     background: transparent }}}}
+
+     &::before {
+       color:      inherit;
+       background: transparent }}}}

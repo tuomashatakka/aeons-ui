@@ -1,32 +1,92 @@
 @import "buttons.less";
+@max-iter: 8;
 
 .panel {
 }
 
-status-bar {
-  min-height: 2em;
-}
+atom-panel-container.left,
+atom-panel-container.right {
+  border:       0 solid @tool-panel-border-color;
+  overflow:     initial;
+  overflow-y:   hidden;
+  overflow-x:   initial;
+  atom-panel {  box-shadow: @tool-panel-box-shadow }}
+
+atom-panel-container.right { border-left-width: @tool-panel-outline-size }
+atom-panel-container.left { border-right-width: @tool-panel-outline-size }
 
 .panel.bordered {
-  border:        1px solid @base-border-color;
-  border-radius: @component-border-radius }
+  border:           1px solid @base-border-color;
+  border-radius:    @component-border-radius }
 
 atom-panel,
 .tool-panel {
 
   .text(normal);
+  background-color: @panel-background-color;
+  border-color:     @tool-panel-border-color;
   position:         relative;
-  background-color: @tool-panel-background-color;
-  border-color: @tool-panel-border-color;
+  border-style:     solid;
+  border-width:     0;
+
+  &.left {
+    .spread(left); }
+
+  &.right {
+    .spread(right);
+    border-left-width: 1px }
 
   &.bottom:not(:empty),
   &.footer:not(:empty),
   &.panel-bottom:not(:empty),
   &.panel-footer:not(:empty) {
-  }}
+    border-top-width: 1px }
+}
+
+status-bar {
+  @height: @status-bar-height - @status-bar-gutter;
+
+  line-height:  @status-bar-height;
+  min-height:   @status-bar-height;
+
+  svg {
+    height: auto !important }
+  * {
+    vertical-align: baseline;
+    line-height:    inherit;
+    display:        inherit;
+    max-height:     @status-bar-height }
+
+  .status-bar-left .inline-block,
+  .status-bar-right .inline-block,
+  .inline-block, span {
+    display: inline;
+    margin-right: @status-bar-gutter / 6 }
+
+  .status-bar-left,
+  .status-bar-right {
+    > div:empty:not(.icon) {
+      display: none }
+    > .inline-block,
+    > * {
+      margin: @status-bar-gutter / 2 0;
+      box-sizing: border-box;
+      line-height: @height;
+      height: @height }
+  }
+  .status-bar-left > * ,
+  .status-bar-left > .inline-block {
+    margin-left: @status-bar-gutter }
+  .status-bar-right > * ,
+  .status-bar-right > .inline-block {
+    margin-right: @status-bar-gutter }
+}
+
+.tool-bar {
+  border: none }
 
 .inset-panel {
-  position: relative;
+  position:         relative;
   background-color: @inset-panel-background-color }
 
 .is-blurred {
@@ -50,6 +110,34 @@ atom-panel,
     @hover:     lighten(@button-background-color-hover, 10%);
     @selected:  lighten(@button-background-color-selected, 10%);
     @text:      lighten(@text-color, 10%);
-    .btn-background(@bg, @hover, @selected, @text);
+    .button(@bg, @text, @hover, @selected);
   }
 }
+
+// Mixins for generating panel z-indexes and color spreads
+.spread(left, @n: 1) {
+  border-left-width: 1px;
+
+  & when (@n < @max-iter) {
+    .spread(left, @n + 1) }
+
+  &:nth-last-child(@{n})  {
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 1%);
+    background-color: @tool-panel-background-color !important }
+
+  &:nth-child(@{n})  {
+     z-index: @n }}
+
+
+.spread(right, @n: 1) {
+  border-right-width: 1px;
+
+  & when (@n < @max-iter) {
+    .spread(right, @n + 1) }
+
+  &:nth-child(@{n})  {
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 5%);
+    background-color: @tool-panel-background-color !important }
+
+  &:nth-last-child(@{n})  {
+    z-index: @n }}

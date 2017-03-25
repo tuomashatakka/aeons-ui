@@ -1,32 +1,41 @@
 
 @modified: ~".modified:not(:hover)";
 @modified-hover: ~".modified:hover";
+@tab-hover-box-shadow: 0 0 1em fade(black, 5%);
 
 .tab-bar {
-
-  @tab-size: @tab-height;
-  @content-height: @tab-size - (2 * @component-padding);
-  height: @tab-size;
+  @content-height: @tab-height - (2 * @component-padding);
+  @tab-size:       @tab-height;
+  height:          @tab-size;
+  background:      @tab-bar-background-color;
+  border-radius:   0;
+  border:          0 solid @tab-bar-border-color;
+  border-width:    0 0 1px 1px;
+  border-left-color: @tab-border-color;
 
   .tab {
-    height: @tab-size;
+    height:     @tab-size;
     transition: @transition-default, width @transition-duration;
     background: @tab-background-color;
-    padding: @component-padding @component-padding / 2 }
+    padding:    @component-padding;
+    border:     0 solid @tab-border-color;
+    border-width: 0 1px 1px 0 }
 
   .tab,
   .tab .close-icon {
     font-size: 1em;
     line-height: @content-height }
 
-  // Title text
+  // Tab title text
   .tab .title {
     .type(tabs);
     font-size: @tab-font-size }
 
+  // Tab icons
   .tab .icon::before {
+    color:          inherit;
     vertical-align: middle;
-    margin-top: -3px }
+    margin-top:    -3px }
 
   // States
   .tab:hover,
@@ -35,15 +44,17 @@
 
   .tab.active {
     flex-grow: 1;
-    background: @tab-background-color-active;
-    background: transparent }
+    border-color: lighten(@tab-border-color, 2%);
+    background: @tab-background-color-active }
 
   .tab:hover {
-    background: lighten(@tab-background-color-active, 8%) }
+    z-index: 5;
+    box-shadow: @tab-hover-box-shadow;
+    border-color: lighten(@tab-border-color, 5%);
+    background: lighten(@tab-background-color-active, 6%) }
 
   .tab.active:hover {
-    background: lighten(@tab-background-color-active, 5%);
-    background: transparent }
+    background: lighten(@tab-background-color-active, 10%) }
 
   // Close icon state overrides & transforms
   .tab { .tab-icon }

@@ -1,36 +1,69 @@
+
 @import "octicon-mixins.less"; // https://github.com/atom/atom/blob/master/static/variables/octicon-mixins.less
 
+@tree-view-indent:  1rem;
+@chevron-size:      10px;
+@icon-size:         1.2em;
+@line-height:       @component-line-height * 1rem;
+
+// List views
 .list-group,
 .list-tree {
 
-  li.list-item,
-  li.list-nested-item .list-item {
-    line-height: @component-line-height * 1rem;
-    .text(normal) }
+  // Default indentation for subitems
+  padding: 0 0 0 @tree-view-indent;
 
-  // Animation for collapse state arrows
-  &.has-collapsable-children .list-nested-item {
+  // Normal entries
+  li.list-item {
+    .text(normal);
+    padding:     0 !important;
+    height:      @line-height;
+    line-height: @line-height }
 
-    &.expanded > div.list-item::before {
-      transform: rotate(90deg) }
+  // Icons
+  li.list-item::before,
+  div.list-item::before {
+    color: inherit;
+  }
 
+  // Foldable items (folders etc)
+  li.list-nested-item div.list-item {
+    padding:     0 !important;
+    height:      @line-height;
+    line-height: @line-height }
+
+  &.has-collapsable-children li.list-nested-item {
+    padding: 0 !important;
+    margin:  0 !important }
+
+  // Carets
+  &.has-collapsable-children li.list-nested-item {
     div.list-item::before {
-      vertical-align: middle;
-      text-align: center;
-      content: "\f078";
-      margin: 0;
-      transition: transform @transition-duration;
-      transform: rotate(0deg) }}
+      vertical-align: middle !important;
+      text-align:     center !important;
+      font-size:      @chevron-size !important;
+      content:        "\f078";
+      margin:         0;
+      display:        inline-block;
+      transform:      rotate(0deg) }
 
-  .icon::before {
-    vertical-align: middle;
-    margin-top: -3px }
+    &.expanded > .list-item::before {
+      transform:   rotate(90deg) }
+
+    &.expanded  > .list-item::before,
+    &.collapsed > .list-item::before {
+      width:       @line-height;
+      height:      @line-height;
+      line-height: @line-height;
+      transition:  transform @transition-duration }}
+
 
   .generate-list-item-text-color(@color, @class) {
     li:not(.list-nested-item).text-@{class},
     li.list-nested-item.text-@{class} > .list-item {
       .text(@class);
       color: @color }}
+
   .generate-list-item-text-color(@text-color-subtle, subtle);
   .generate-list-item-text-color(mix(@text-color-info, @text-color), info);
   .generate-list-item-text-color(mix(@text-color-success, @text-color), success);
@@ -38,28 +71,15 @@
   .generate-list-item-text-color(mix(@text-color-error, @text-color), error);
   .generate-list-item-text-color(@text-color-selected, selected);
 
-  .generate-list-item-status-color(@color, @status) {
-    li:not(.list-nested-item).status-@{status},
-    li.list-nested-item.status-@{status} > .list-item {
-      &, &::before {
-      color: mix(@color, @text-color, 55%) }}
-
-    li:not(.list-nested-item).selected.status-@{status},
-    li.list-nested-item.selected.status-@{status} > .list-item {
-      &, &::before {
-        color: mix(@color, @text-color, 88%) }}}
-
-  .generate-list-item-status-color(@text-color-subtle, ignored);
-  .generate-list-item-status-color(@text-color-added, added);
-  .generate-list-item-status-color(@text-color-renamed, renamed);
-  .generate-list-item-status-color(@text-color-modified, modified);
-  .generate-list-item-status-color(@text-color-removed, removed);
+  .list-item-status(@text-color-subtle, ignored);
+  .list-item-status(@text-color-added, added);
+  .list-item-status(@text-color-renamed, renamed);
+  .list-item-status(@text-color-modified, modified);
+  .list-item-status(@text-color-removed, removed);
 
   li:not(.list-nested-item).selected,
   li.list-nested-item.selected > .list-item {
-    .text(selected);
-  }
-}
+    .text(selected) }}
 
 .select-list ol.list-group,
 &.select-list ol.list-group {
@@ -67,16 +87,13 @@
     .secondary-line { color: @text-color-subtle; }
     &.selected .secondary-line {
       color: @text-color;
-      text-shadow: none;
-    }
-  }
+      text-shadow: none }}
 
   // We want to highlight the background of the list items because we dont
   // know their size.
   li.selected {
     background-color: @background-color-selected;
-    &:before{ display: none; }
-  }
+    &:before { display: none }}
 
   &.mark-active{
     @active-icon-size: 14px;
@@ -91,58 +108,64 @@
       display: inline-block;
       left: auto; right: auto;
       height: @active-icon-size;
-      width: @active-icon-size;
-    }
+      width: @active-icon-size }
+
     > li:not(.active):before {
-      margin-right: @component-icon-padding;
-    }
+      margin-right: @component-icon-padding }
+
     li.active {
       .octicon(check, @active-icon-size);
+
       &:before {
         margin-right: @component-icon-padding;
-        color: @text-color-success;
-      }
-    }
-  }
-}
+        color: @text-color-success }}}}
 
 .select-list.popover-list {
   background-color:   @overlay-background-color;
-  box-shadow:         0 0 10px fade(black, 10%);
+  box-shadow:         0 0 10px fade(black, 20%);
   padding:            @component-padding @component-padding * 0.75;
   border-radius:      @component-border-radius;
   border-color:       darken(@overlay-border-color, 3%);
   margin-top:         3rem;
 
   li.selected, li.selected * {
-    color: @text-color-highlight !important;
-  }
+    color: @text-color-highlight !important }
 
-  atom-text-editor {
-    margin-bottom: @component-padding }
-
-  .list-group li {
-    padding-left: @component-padding }
-}
+  .list-group li { }}
 
 .ui-sortable {
-  li {
-    line-height: 2.5 }
+
+  li { line-height: 2.5 }
 
   // For sortable lists in the settings view
   li.ui-sortable-placeholder {
-    visibility: visible !important;
-    background-color: darken(@pane-item-background-color, 10%);
-  }
-}
+    visibility:       visible !important;
+    background-color: darken(@pane-item-background-color, 10%) }}
 
-li.ui-draggable-dragging, li.ui-sortable-helper {
-  line-height: @component-line-height;
-  height: @component-line-height;
-  border: 0;
+li.ui-draggable-dragging,
+li.ui-sortable-helper {
+  line-height:   @component-line-height;
+  height:        @component-line-height;
+  border:        0;
   border-radius: 0;
-  list-style: none;
-  padding: 0 @component-padding;
-  background: @background-color-highlight;
-  box-shadow: 0 0 1px @base-border-color;
-}
+  list-style:    none;
+  padding:       0 @component-padding;
+  background:    @background-color-highlight;
+  box-shadow:    0 0 1px @base-border-color }
+
+
+@leaf:    ~"li:not(.list-nested-item)";
+@branch:  ~"li.list-nested-item";
+
+.list-item-status(@color, @status) {
+  @LEAF: ~"@{leaf}.status-@{status}";
+
+  // Leaf nodes
+  @{LEAF},
+  @{LEAF} > .list-item {
+    color: mix(@color, @text-color, 55%) }
+
+  // Selected leaf nodes
+  @{LEAF}.selected,
+  @{LEAF}.selected > .list-item {
+      color: mix(@color, @text-color, 88%) }}
