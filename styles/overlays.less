@@ -1,21 +1,30 @@
 
-@backdrop-blur: 0.5em;
+@backdrop-blur:      3px;
+@backdrop-fade-in:   1s;
+@backdrop-fade-out:  300ms;
+@overlay-box-shadow: 0 0 10px fade(black, 15%);
+
+atom-workspace-axis.horizontal,
+atom-panel-container.header,
+atom-panel-container.footer {
+  transition: @backdrop-fade-out -webkit-filter }
 
 .modal-open {
   atom-workspace-axis.horizontal,
   atom-panel-container.header,
   atom-panel-container.footer {
-  -webkit-filter: blur(@backdrop-blur) }}
+    transition: @backdrop-fade-in -webkit-filter;
+    -webkit-filter: blur(@backdrop-blur) saturate(50%) brightness(90%) }}
 
 atom-panel.modal,
 .overlay {
 
-  color: @text-color;
-  background-color: @overlay-background-color;
+  color:         @text-color;
+  background:    @overlay-background-color;
   border-radius: @component-border-radius;
-  box-shadow: 0 0 10px fade(black, 5%);
-  border: 1px solid @overlay-border-color;
-  padding: @component-padding;
+  box-shadow:    @overlay-box-shadow;
+  border:        1px solid @overlay-border-color;
+  padding:       @component-padding;
 
   atom-text-editor[mini] {
     .type(overlay-input);
