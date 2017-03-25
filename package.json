@@ -51,8 +51,17 @@
       "properties": {
         "scale": {
           "order": 1,
-          "title": "UI Scale",
+          "title": "Spacing for UI",
           "description": "Scale the user interface (does not affect the text editor font size)",
+          "type": "integer",
+          "default": 100,
+          "minimum": 50,
+          "maximum": 150
+        },
+        "size": {
+          "order": 2,
+          "title": "Basis for UI components' sizing",
+          "description": "Text, tabs, inputs, buttons, ...",
           "type": "integer",
           "default": 100,
           "minimum": 50,

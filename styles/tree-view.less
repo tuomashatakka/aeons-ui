@@ -7,6 +7,20 @@
     background: lighten(@background-color-selected, 5%);
     height: @component-line-height * 1rem;
   }
+
+  .project-root > .header.project-root-header {
+    height: @tab-height;
+    line-height: @line-height !important;
+    padding: (@tab-height - @line-height) / 2 @component-padding / 2 !important
+  }
+  .project-root::before,
+  .project-root:focus::before,
+  .project-root.selected::before,
+  .project-root.selected.collapsed::before,
+  .project-root.selected.expanded::before,
+  .project-root.selected:focus::before {
+    height: @tab-height;
+  }
 }
 
 .tree-view-resizer {

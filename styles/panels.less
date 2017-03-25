@@ -29,23 +29,16 @@ atom-panel,
   border-style:     solid;
   border-width:     0;
 
-  &.left {
-    .spread(left); }
-
-  &.right {
-    .spread(right);
-    border-left-width: 1px }
-
+  &.left { .spread(left); }
+  &.right { .spread(right) }
   &.bottom:not(:empty),
   &.footer:not(:empty),
   &.panel-bottom:not(:empty),
   &.panel-footer:not(:empty) {
-    border-top-width: 1px }
-}
+    border-top-width: 1px }}
 
 status-bar {
-  @height: @status-bar-height - @status-bar-gutter;
-
+  @height:      @status-bar-height - @status-bar-gutter;
   line-height:  @status-bar-height;
   min-height:   @status-bar-height;
 
@@ -63,17 +56,17 @@ status-bar {
     display: inline;
     margin-right: @status-bar-gutter / 6 }
 
-  .status-bar-left,
-  .status-bar-right {
-    > div:empty:not(.icon) {
+  .status-bar-left > div:empty:not(.icon),
+  .status-bar-right > div:empty:not(.icon) {
       display: none }
+
     > .inline-block,
     > * {
-      margin: @status-bar-gutter / 2 0;
-      box-sizing: border-box;
-      line-height: @height;
-      height: @height }
-  }
+      margin:       @status-bar-gutter / 2 0;
+      box-sizing:   border-box;
+      line-height:  @height;
+      height:       @height }
+
   .status-bar-left > * ,
   .status-bar-left > .inline-block {
     margin-left: @status-bar-gutter }

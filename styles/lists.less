@@ -21,10 +21,9 @@
     line-height: @line-height }
 
   // Icons
-  li.list-item::before,
-  div.list-item::before {
-    color: inherit;
-  }
+  .icon::before,
+  .list-item::before {
+    color: inherit }
 
   // Foldable items (folders etc)
   li.list-nested-item div.list-item {
@@ -57,34 +56,34 @@
       line-height: @line-height;
       transition:  transform @transition-duration }}
 
-
-  .generate-list-item-text-color(@color, @class) {
-    li:not(.list-nested-item).text-@{class},
-    li.list-nested-item.text-@{class} > .list-item {
-      .text(@class);
-      color: @color }}
-
-  .generate-list-item-text-color(@text-color-subtle, subtle);
-  .generate-list-item-text-color(mix(@text-color-info, @text-color), info);
-  .generate-list-item-text-color(mix(@text-color-success, @text-color), success);
-  .generate-list-item-text-color(mix(@text-color-warning, @text-color), warning);
-  .generate-list-item-text-color(mix(@text-color-error, @text-color), error);
-  .generate-list-item-text-color(@text-color-selected, selected);
-
-  .list-item-status(@text-color-subtle, ignored);
-  .list-item-status(@text-color-added, added);
-  .list-item-status(@text-color-renamed, renamed);
-  .list-item-status(@text-color-modified, modified);
-  .list-item-status(@text-color-removed, removed);
+  // Status highlights
+  [class*=status] > .list-item { color: inherit }
+  [class*=status] > .list-tree {
+    color: @text-color }
 
   li:not(.list-nested-item).selected,
   li.list-nested-item.selected > .list-item {
     .text(selected) }}
 
+// List view items
+.list-item > .name {
+  display: inline-block }
+.list-item > .name::before {
+  vertical-align: baseline;
+  text-align:     center;
+  line-height:    @line-height;
+  width:          @line-height;
+  height:         @line-height;
+  display:        inline-block }
+
+
 .select-list ol.list-group,
 &.select-list ol.list-group {
   li.two-lines {
-    .secondary-line { color: @text-color-subtle; }
+
+    .secondary-line {
+      color: @text-color-subtle }
+
     &.selected .secondary-line {
       color: @text-color;
       text-shadow: none }}
@@ -102,7 +101,6 @@
     // active items with a 'fake' icon so other classes can pad the item
     // without worrying about the icon padding.
     li:before {
-      content: '';
       background-color: transparent;
       position: static;
       display: inline-block;
@@ -154,18 +152,11 @@ li.ui-sortable-helper {
   box-shadow:    0 0 1px @base-border-color }
 
 
-@leaf:    ~"li:not(.list-nested-item)";
-@branch:  ~"li.list-nested-item";
-
 .list-item-status(@color, @status) {
-  @LEAF: ~"@{leaf}.status-@{status}";
-
-  // Leaf nodes
-  @{LEAF},
-  @{LEAF} > .list-item {
-    color: mix(@color, @text-color, 55%) }
-
-  // Selected leaf nodes
-  @{LEAF}.selected,
-  @{LEAF}.selected > .list-item {
-      color: mix(@color, @text-color, 88%) }}
+  li.list-item:not(.list-nested-item).status-@{status},
+  li.list-nested-item.status-@{status} > .list-item {
+    color: mix(@color, @text-color, 55%);
+  &.selected {
+    color: mix(@color, @text-color, 88%)
+}}
+}
