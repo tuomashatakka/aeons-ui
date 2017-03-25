@@ -1,52 +1,70 @@
 
+@icon-size: 12px;
 
-.btn-background (@color, @hover-color, @selected-color, @text-color) {
+.button(@bg, @color, @hover, @selected) {
 
-  color:            @text-color;
-  background-color: transparent;
+  @text-hover:          mix(@color, @hover);
+  @background-hover:    mix(@bg, @hover);
+  @text-selected:       mix(@color, @selected);
+  @background-selected: mix(@bg, @selected);
+  @text-selected-hover:      lighten(@text-selected, 10%);
+  @background-selected-hover: lighten(@background-selected, 10%);
 
-  &:focus { color: @text-color }
-  &:hover { color: @text-color-highlight }
-  &.selected { color: @text-color-highlight }
-  &.selected:hover { color: @text-color-highlight }}
+  color:          @color;
+  background:     @bg;
 
-.btn-variant (@color) {
-  @bg: darken(@color, 10%);
-  @hover: @color;
-  @selected: @color;
-  .btn-background(@bg, @hover, @selected, @text-color-highlight) }
+  &:focus {
+    color: darken(@color, 5%);
+    background: darken(@bg, 2%) }
+  &:hover {
+    color: @text-hover;
+    background: @background-hover }
+  &.selected {
+    color: @text-selected;
+    background: @background-selected }
+  &.selected:hover {
+    color: @text-selected-hover;
+    background: @background-selected-hover }}
 
+.btn.btn-default {
+  .button-state(normal,  lighten(@text-color, 5%), @button-background-color) }
+.btn.btn-info {
+  .button-state(info, @text-color-info, @background-color-info) }
+.btn.btn-success {
+  .button-state(success, @text-color-success, @background-color-success) }
+.btn.btn-warning {
+  .button-state(warning, @text-color-warning, @background-color-warning) }
+.btn.btn-error {
+  .button-state(error, @text-color-error, @background-color-error) }
+.btn.btn-fatal {
+  .button-state(fatal @text-color-error, @background-color-error) }
+
+.button-state (@state, @text: @text-color, @background: @button-background-color) {
+  @hover:    mix(@background, @button-background-color-hover, 25%);
+  @selected: mix(@background, @button-background-color-selected, 25%);
+  .button(@background, @text, @hover, @selected) }
+
+
+// Main button definitions
 .btn {
-  @padding: @component-padding * 0.5;
-  @size: @component-line-height * 1rem + @padding;
   .type(button);
+  .button(@button-background-color, @text-color, @button-background-color-hover, @button-background-color-selected);
+  @size:        @component-line-height * 1rem + @padding;
+  @padding:     @component-padding * 0.5;
 
-  line-height:  @size - @padding * 2;
   height:       @size;
-  padding:      @padding @padding * 2;
-  .btn-background(@button-background-color, @button-background-color-hover, @button-background-color-selected, @text-color) }
+  padding:      @padding  @padding * 2;
+  line-height:  @size -   @padding * 2;
+  background:   darken(@button-background-color, 5%);
+  text-transform: uppsercase }
 
 .btn.icon::before {
   vertical-align: middle;
   margin-top: -2px }
 
-.btn.btn-primary {
-  .btn-variant(@background-color-info);
-}
-.btn.btn-info {
-  .btn-variant(@background-color-info);
-}
-.btn.btn-success {
-  .btn-variant(@background-color-success);
-}
-.btn.btn-warning {
-  .btn-variant(@background-color-warning);
-}
-.btn.btn-error {
-  .btn-variant(@background-color-error);
-}
 
 .caret {
-  border-top: 5px solid #fff;
-  margin-top: -1px;
-}
+  border-top: @icon-size solid #fff;
+  margin-top: -1px }
+
+button { .btn }
