@@ -1,6 +1,6 @@
 {
   "atom": "1.16.0-beta0",
-  "pigments": "0.39.0",
+  "pigments": "0.39.1",
   "platform": "darwin",
   "config": {
     "autocompleteScopes": [

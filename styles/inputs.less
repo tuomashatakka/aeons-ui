@@ -20,6 +20,7 @@ atom-text-editor[mini] {
   box-shadow:     none;
   transition:     @transition-default }
 
+// Checkboxes
 input[type="checkbox"] {
   @size: 1.3em;
   padding:    0;
@@ -28,48 +29,50 @@ input[type="checkbox"] {
   height:     @size;
   min-height: @size }
 
+// Range sliders
 input[type=range] {
   -webkit-appearance: none;
   background:         transparent;
   box-sizing:         border-box;
+
+  &::-webkit-slider-runnable-track {
+    margin:           @component-padding;
+    height:           1px;
+    background:       mix(@text-color, @base-background-color, 25%);
+    border-radius:    @component-border-radius;
+    cursor:           pointer;
+    transition:       @transition-default }
+
+  &::-webkit-slider-thumb {
+    @border:          4px;
+    @size:            1.4em;
+    background:       @text-color;
+    margin-top:      -@size/2;
+    width:            1.5 * @size;
+    height:           @size;
+    border-radius:    @size;
+    cursor:           pointer;
+    border:           @border solid @base-background-color;
+    -webkit-appearance: none }
+
+  &:focus {
+    outline: none }
+
+  &:hover::-webkit-slider-runnable-track {
+    background:       mix(@text-color, @base-background-color, 40%) }
 }
 
-input[type=range]::-webkit-slider-runnable-track {
-  margin:         @component-padding;
-  height:         1px;
-  background:     mix(@text-color, @base-background-color, 25%);
-  border-radius:  @component-border-radius;
-  cursor:         pointer;
-  transition:     @transition-default;
-  &:hover {
-    background:   mix(@text-color, @base-background-color, 40%);
-  }
-}
-input[type=range]::-webkit-slider-thumb {
-  @border:            4px;
-  @size:              1.4em;
-  background:         @text-color;
-  margin-top:        -@size/2;
-  width:              1.5 * @size;
-  height:             @size;
-  border-radius:      @size;
-  cursor:             pointer;
-  border:             @border solid @base-background-color;
-  -webkit-appearance: none;
-}
-
-input[type=range]:focus {
-  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
-}
-
-
+// Mini text editors
 atom-text-editor[mini] {
   height: @input-size;
 
   .cursor {
-    border-color: #fff; }
+    border-width: 0 0 0 1px;
+    border-color: darken(@input-background-color, 5%); }
+
   .selection .region {
-    background-color: lighten(@input-background-color, 10%); }
+    border-radius: @component-border-radius;
+    background-color: lighten(@input-background-color, 10%) !important; }
 
   &.is-focused {
     background-color: lighten(@input-background-color, 5%);

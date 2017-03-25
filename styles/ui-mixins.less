@@ -1,25 +1,51 @@
 
-.text(normal) {
-  font-weight:  @font-weight;
-  color:        @text-color }
+.state(@type: info) {
+  .state-fg(@type, color);
+  .state-bg(@type, background-color) }
 
-.text(subtle) {
+.state-inverse(@state) {
+  .state-fg(@state, background-color);
+  .state-bg(@state, color) }
+
+.text(@state, @attr: color) {
+  .state-fg(@state, @attr) }
+
+.background(@state, @attr: background-color) {
+  .state-bg(@state, @attr) }
+
+.state-fg(normal, @attr) {
+  font-weight:  @font-weight;
+  @attr:        @text-color }
+.state-fg(subtle, @attr) {
   font-weight:  @font-weight;
   color:        @text-color-subtle }
-.text(highlight) {
+.state-fg(highlight, @attr) {
   font-weight:  @font-weight;
   color:        @text-color-highlight }
-.text(selected) {
+.state-fg(selected, @attr) {
   .text(highlight) }
 
-.text(info) {
-  color: @text-color-info }
-.text(success) {
-  color: @text-color-success }
-.text(warning) {
-  color: @text-color-warning }
-.text(error) {
-  color: @text-color-error }
+.state-fg(info, @attr) {
+  @attr: @text-color-info }
+.state-fg(success, @attr) {
+  @attr: @text-color-success }
+.state-fg(warning, @attr) {
+  @attr: @text-color-warning }
+.state-fg(error, @attr) {
+  @attr: @text-color-error }
+.state-fg(fatal, @attr) {
+  @attr: @text-color-error }
+
+.state-bg(info, @attr) {
+  @attr: @background-color-info }
+.state-bg(success, @attr) {
+  @attr: @background-color-success }
+.state-bg(warning, @attr) {
+  @attr: @background-color-warning }
+.state-bg(error, @attr) {
+  @attr: @background-color-error }
+.state-bg(fatal, @attr) {
+  @attr: @background-color-error }
 
 .type(heading) {
   font-family:    @font-family;

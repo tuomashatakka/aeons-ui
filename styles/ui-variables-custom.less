@@ -4,24 +4,37 @@
 // @color-background:  #0d0a11;
 // @color-info:        #3c29b3;
 // @color-info:        #cc21f2;
-@color-foreground:  #484848;
-@color-background:  #ede9f0;
-@color-selected:    #3a3742;
-@color-info:        #0053cf;
-@color-success:     #21f2b2;
-@color-warning:     #2168f2;
-@color-error:       #f22166;
+
+@color-base:        #3a3742, #484848, #ede9f0;
+@color-highlight:   #37bcfe, #1feda8, #ed4581, #f6599b, #80eb5a;
+@color-states:      #0053cf, #21f2b2, #2168f2, #f22166;
+
+@color-selected:    extract(@color-base,   1);
+@color-foreground:  extract(@color-base,   2);
+@color-background:  extract(@color-base,   3);
+@color-info:        extract(@color-states, 1);
+@color-success:     extract(@color-states, 2);
+@color-warning:     extract(@color-states, 3);
+@color-error:       extract(@color-states, 4);
 
 @notification-background-color: white;
 @notification-text-color:       @text-color-subtle;
-@notification-icon-size:        2rem;
-@tab-font-size:                 0.75 * @font-size;
-@list-font-size:                0.9 * @font-size;
+@tool-panel-box-shadow:         0 0 2.4em darken(@tool-panel-border-color, 5%);
+
 @ui-size:                       16px;
 @font-weight:                   300;
-@scrollbar-size:                1em;
+@tool-panel-outline-size:       0px;
 @overlay-input-text-size:       3em;
-@component-border-radius-round: 2 * @component-padding;
+@notification-icon-size:        2rem;
+@scrollbar-size:                1em;
+@scrollbar-gutter:              1px;
+
+@tab-font-size:                 @font-size * 0.75;
+@list-font-size:                @font-size * 0.9;
+@status-bar-height:             @component-padding * 2.5;
+@status-bar-gutter:             @component-padding * 0.75;
+@component-border-radius-round: @component-padding * 2;
+
 @transition-duration:           250ms;
 @transition-curve:              ease-in-out;
 @transition-default:            color @transition-duration,
