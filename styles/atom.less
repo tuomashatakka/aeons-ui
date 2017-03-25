@@ -12,6 +12,22 @@ atom-workspace {
   background-color: @app-background-color;
 }
 
+atom-text-editor {
+  ::-webkit-scrollbar {
+    width: @scrollbar-size;
+    height: @scrollbar-size;
+	 	border: @scrollbar-gutter solid transparent }
+
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: @scrollbar-background-color-editor }
+
+  ::-webkit-scrollbar-thumb {
+		border: @scrollbar-gutter solid @syntax-background-color;
+    background: @scrollbar-color-editor;
+    border-radius: @scrollbar-size }}
+
+
 .scrollbars-visible-always {
   ::-webkit-scrollbar {
     width: @scrollbar-size;
