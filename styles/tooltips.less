@@ -1,48 +1,61 @@
+
+
+
+@tip-background-color: @color-black;
+@tip-text-color: @color-white;
 .tooltip {
-  @tip-background-color: #fff;
-  @tip-text-color: #333;
+
+  padding: 0 !important;
+  margin: @disclosure-arrow-size;
+  background: @tip-background-color;
+  color: @tip-text-color;
+  border-radius: 1px;
+  box-shadow: @tab-hover-box-shadow;
   white-space: nowrap;
+  transition: @transition-default, opacity .3s;
 
   .keystroke {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 13px;
     color: #777;
-    padding-left: 2px;
-  }
+    padding-left: 2px }
 
-  &.in { opacity: 1; }
+  &.in {
+    opacity: 1; }
 
   .tooltip-inner {
     line-height: 19px;
+    padding: @component-padding / 2 @component-padding / 2;
     border-radius: @component-border-radius;
-    background-color: @tip-background-color;
-    color: @tip-text-color;
+    background: transparent;
+    color: inherit;
     white-space: nowrap;
-    max-width: none;
-  }
+    max-width: none }}
 
-  &.top .tooltip-arrow {
-    border-top-color: @tip-background-color;
-  }
-  &.top-left .tooltip-arrow {
-    border-top-color: @tip-background-color;
-  }
-  &.top-right .tooltip-arrow {
-    border-top-color: @tip-background-color;
-  }
-  &.right .tooltip-arrow {
-    border-right-color: @tip-background-color;
-  }
-  &.left .tooltip-arrow {
-    border-left-color: @tip-background-color;
-  }
-  &.bottom .tooltip-arrow {
-    border-bottom-color: @tip-background-color;
-  }
-  &.bottom-left .tooltip-arrow {
-    border-bottom-color: @tip-background-color;
-  }
-  &.bottom-right .tooltip-arrow {
-    border-bottom-color: @tip-background-color;
-  }
+.tooltip-arrow {
+  @col: @tip-background-color;
+  @size: @disclosure-arrow-size;
+  position: absolute;
+  top: auto;
+  left: auto;
+
+  .tooltip[class*=top] & {
+    top: 100%;
+    border-width: @size @size 0;
+    border-top-color: @col }
+
+  .tooltip[class*=left] & {
+    left: 100%;
+    border-width: @size 0 @size @size;
+    border-left-color: @col }
+
+  .tooltip[class*=right] & {
+    left: -@disclosure-arrow-size;
+    border-width: @size @size @size 0;
+    border-right-color: @col }
+
+  .tooltip[class*=bottom] & {
+    top: -@disclosure-arrow-size;
+    border-width: 0 @size @size;
+    border-bottom-color: @col }
 }

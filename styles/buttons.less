@@ -4,26 +4,32 @@
 .button(@bg, @color, @hover, @selected) {
 
   @text-hover:          mix(@color, @hover);
-  @background-hover:    mix(@bg, @hover);
+  @background-hover:    lighten(mix(@bg, @hover), 4%);
   @text-selected:       mix(@color, @selected);
   @background-selected: mix(@bg, @selected);
-  @text-selected-hover:      lighten(@text-selected, 10%);
+  @text-selected-hover:      lighten(@text-selected, 20%);
   @background-selected-hover: lighten(@background-selected, 10%);
 
+  border-color:   darken(@bg, 5%) !important;
   color:          @color;
   background:     @bg;
 
   &:focus {
+    outline: none;
     color: darken(@color, 5%);
+    border-color: darken(@bg, 8%);
     background: darken(@bg, 2%) }
   &:hover {
     color: @text-hover;
+    border-color: darken(@background-hover, 8%);
     background: @background-hover }
   &.selected {
     color: @text-selected;
+    border-color: darken(@background-selected, 8%);
     background: @background-selected }
   &.selected:hover {
     color: @text-selected-hover;
+    border-color: darken(@background-selected-hover, 8%);
     background: @background-selected-hover }}
 
 .btn.btn-default {
@@ -48,15 +54,18 @@
 // Main button definitions
 .btn {
   .type(button);
+  text-transform: uppercase;
   .button(@button-background-color, @text-color, @button-background-color-hover, @button-background-color-selected);
   @size:        @component-line-height * 1rem + @padding;
   @padding:     @component-padding * 0.5;
 
-  height:       @size;
-  padding:      @padding  @padding * 2;
-  line-height:  @size -   @padding * 2;
-  background:   darken(@button-background-color, 5%);
-  text-transform: uppsercase }
+  padding:      @padding @padding * 2;
+  line-height:  inherit;
+  height:       auto;
+  margin:       0;
+  box-sizing:   content-box;
+  display:      inline-block;
+}
 
 .btn.icon::before {
   vertical-align: middle;
@@ -68,3 +77,36 @@
   margin-top: -1px }
 
 button { .btn }
+
+.btn-toolbar,
+.btn-group {
+  display: flex;
+
+  .btn {
+    flex:    1 1 auto;
+    margin:  0;
+    padding: @component-padding * 0.5
+             @component-padding * 0.8;
+  }
+}
+
+.btn-group,
+.btn-toolbar,
+.btn-toolbar > .btn,
+.btn-toolbar > .btn-group {
+  margin: 0 @component-padding / 2 0 0 }
+
+.btn-toolbar {
+  vertical-align:  middle;
+  justify-content: center;
+  align-items:     center;
+  text-align:      center }
+
+.btn-xs, .btn-group-xs .btn {
+  font-size: 6px;
+  font-weight: 600 }
+.btn-sm, .btn-group-sm .btn {
+  font-size: 12px; }
+.btn-lg, .btn-group-lg .btn {
+  font-size: 24px;
+  font-weight: 200 }

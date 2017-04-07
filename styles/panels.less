@@ -6,18 +6,23 @@
 
 atom-panel-container.left,
 atom-panel-container.right {
-  border:       0 solid @tool-panel-border-color;
-  overflow:     initial;
+  border-color: @tool-panel-border-color;
+  border-width: 0;
+  border-style: solid;
   overflow-y:   hidden;
-  overflow-x:   initial;
-  atom-panel {  box-shadow: @tool-panel-box-shadow }}
+  overflow:     initial;
+  atom-panel {
+    box-shadow: @tool-panel-box-shadow }
+}
 
-atom-panel-container.right { border-left-width: @tool-panel-outline-size }
-atom-panel-container.left { border-right-width: @tool-panel-outline-size }
+// atom-panel-container.right { border-left-width: @tool-panel-outline-size }
+// atom-panel-container.left { border-right-width: @tool-panel-outline-size }
 
 .panel.bordered {
-  border:           1px solid @base-border-color;
-  border-radius:    @component-border-radius }
+  border-width:   0;
+  border-radius:  @component-border-radius;
+  border-color:   @base-border-color;
+  border-style:   solid }
 
 atom-panel,
 .tool-panel {
@@ -42,43 +47,60 @@ atom-panel,
   &.footer:not(:empty),
   &.panel-bottom:not(:empty),
   &.panel-footer:not(:empty) {
-    border-top-width: 1px }}
+    border-top-width: 0 }}
 
 status-bar {
   @height:      @status-bar-height - @status-bar-gutter;
-  line-height:  @status-bar-height;
-  min-height:   @status-bar-height;
+  line-height:  var(--height, @status-bar-height);
+  min-height:   var(--height, @status-bar-height);
 
   svg {
     height: auto !important }
-  * {
-    vertical-align: baseline;
-    line-height:    inherit;
-    display:        inherit;
-    max-height:     @status-bar-height }
+  > * {
+    display:        inherit; }
+
+  .status-bar-left,
+  .status-bar-right {
+    vertical-align: middle;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 }
 
   .status-bar-left .inline-block,
   .status-bar-right .inline-block,
   .inline-block, span {
-    display: inline;
-    margin-right: @status-bar-gutter / 6 }
+    flex: 0 1 auto;
+    display: inline-block;
+    margin: 0 }
 
-  .status-bar-left > div:empty:not(.icon),
-  .status-bar-right > div:empty:not(.icon) {
+  > * span {
+    display: inline-block;
+    vertical-align: middle;
+    max-height: 1.5rem;
+    line-height: 1rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    margin-right: 1px }
+
+  .status-bar-left > *:empty:not(.icon),
+  .status-bar-right > *:empty:not(.icon) {
       display: none }
 
     > .inline-block,
     > * {
       margin:       @status-bar-gutter / 2 0;
       box-sizing:   border-box;
-      line-height:  @height;
-      height:       @height }
+      line-height:  ~"calc(--height - @{status-bar-gutter})";
+      height:       ~"calc(--height - @{status-bar-gutter})" }
 
   .status-bar-left > * ,
   .status-bar-left > .inline-block {
+    margin-right: 0;
     margin-left: @status-bar-gutter }
   .status-bar-right > * ,
   .status-bar-right > .inline-block {
+    margin-left: 0;
     margin-right: @status-bar-gutter }
 }
 
@@ -110,13 +132,11 @@ status-bar {
     @hover:     lighten(@button-background-color-hover, 10%);
     @selected:  lighten(@button-background-color-selected, 10%);
     @text:      lighten(@text-color, 10%);
-    .button(@bg, @text, @hover, @selected);
-  }
-}
+    .button(@bg, @text, @hover, @selected) }}
 
 // Mixins for generating panel z-indexes and color spreads
 .spread(left, @n: 1) {
-  border-left-width: 1px;
+  border-left-width: 0;
 
   & when (@n < @max-iter) {
     .spread(left, @n + 1) }
@@ -130,7 +150,7 @@ status-bar {
 
 
 .spread(right, @n: 1) {
-  border-right-width: 1px;
+  border-right-width: 0;
 
   & when (@n < @max-iter) {
     .spread(right, @n + 1) }

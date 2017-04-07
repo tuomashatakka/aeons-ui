@@ -4,6 +4,7 @@
 @tree-view-indent:  1rem;
 @chevron-size:      10px;
 @icon-size:         1.2em;
+@list-icon-size:    2rem;
 @line-height:       @component-line-height * 1rem;
 
 // List views
@@ -11,14 +12,17 @@
 .list-tree {
 
   // Default indentation for subitems
-  padding: 0 0 0 @tree-view-indent;
+  margin:  0 0 0 @tree-view-indent;
+  padding: 0;
 
   // Normal entries
   li.list-item {
     .text(normal);
     padding:     0 !important;
     height:      @line-height;
-    line-height: @line-height }
+    line-height: @line-height;
+  atom-panel & {
+    height:      auto }}
 
   // Icons
   .icon::before,
@@ -68,6 +72,7 @@
 // List view items
 .list-item > .name {
   display: inline-block }
+
 .list-item > .name::before {
   vertical-align: baseline;
   text-align:     center;
@@ -77,19 +82,38 @@
   display:        inline-block }
 
 
-.select-list ol.list-group,
-&.select-list ol.list-group {
+.select-list ol.list-group {
+// &.select-list ol.list-group {
+  li {
+    border: none;
+    position: relative }
   li.two-lines {
+    color: @text-color-subtle;
+
+    .icon {
+      padding-left: @list-icon-size;
+    }
+    .icon::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      line-height: @list-icon-size;
+      font-size: @list-icon-size;
+      display: inline-block;
+      margin: 0;
+      width: @list-icon-size;
+    }
 
     .secondary-line {
+      display: block;
+      padding: 0 0 0 @component-icon-padding + @list-icon-size;
       color: @text-color-subtle }
 
     &.selected .secondary-line {
-      color: @text-color;
+      color: inherit;
       text-shadow: none }}
 
-  // We want to highlight the background of the list items because we dont
-  // know their size.
   li.selected {
     background-color: @background-color-selected;
     &:before { display: none }}
@@ -97,9 +121,6 @@
   &.mark-active{
     @active-icon-size: 14px;
 
-    // pad in front of the text where the icon would be We'll pad the non-
-    // active items with a 'fake' icon so other classes can pad the item
-    // without worrying about the icon padding.
     li:before {
       background-color: transparent;
       position: static;

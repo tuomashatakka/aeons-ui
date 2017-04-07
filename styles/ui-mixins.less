@@ -49,24 +49,30 @@
 
 .type(heading) {
   font-family:    @font-family;
-  font-weight:    100 !important;
-  letter-spacing: 0.05em;
-  text-transform: uppercase }
+  font-weight:    700;
+  letter-spacing: -0.14em }
 
 .type(tabs) {
   font-size:      @tab-font-size;
   font-weight:    400;
-  text-transform: uppercase }
+  letter-spacing: 0em }
+
+.type(active) {
+  letter-spacing: -0.04em;
+  font-weight:    700 }
+
 .type(button) {
   .type(tabs);
-  font-weight:    400;
-  letter-spacing: 0.05em }
+  font-weight:    300;
+  letter-spacing: 0.035em }
 
 .type(input) {
-  font-family: @font-family;
-  font-size: @input-font-size;
-  font-weight: 300 }
+  font-family:  @font-family;
+  font-size:    @input-font-size;
+  font-weight:  400 }
+
 .type(overlay-input) {
   .type(input);
-  font-size: @overlay-input-text-size;
-  font-weight: 100 }
+  font-size:    @overlay-input-text-size;
+  line-height:  2.5em !important;
+  font-weight:  200 }

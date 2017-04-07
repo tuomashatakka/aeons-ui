@@ -64,16 +64,36 @@ input[type=range] {
 
 // Mini text editors
 atom-text-editor[mini] {
-  height: @input-size;
+  @cursor-color:     lighten(@input-background-color, 25%);
+  @selection-color:  lighten(@input-background-color, 18%);
+  @background:        @input-background-color;
+  @background-active: @input-background-color-focus;
+  @background-hover:  mix(@input-background-color, @input-background-color-focus);
+
+  .type(input);
+  font-weight:  300;
+  background:   @background;
+  box-shadow:   none !important;
+  outline:      none;
+  padding:      @component-padding / 3 @component-padding @component-padding / 3.5;
+  margin:       0;
+  opacity:      0.5;
+  height:       @input-size;
 
   .cursor {
     border-width: 0 0 0 1px;
-    border-color: darken(@input-background-color, 5%); }
+    width: 1px;
+    border-color: @cursor-color; }
 
   .selection .region {
     border-radius: @component-border-radius;
-    background-color: lighten(@input-background-color, 10%) !important; }
+    background-color: @selection-color !important; }
+
+  &:not(.is-focused):hover {
+    opacity: 0.75;
+    background-color: @background-hover !important }
 
   &.is-focused {
-    background-color: lighten(@input-background-color, 5%);
+    opacity: 1;
+    background-color: @input-background-color-focus;
     .selection .region { background-color: desaturate(@background-color-info, 50%) }}}

@@ -1,9 +1,33 @@
 
 .settings-view {
-  @padding: @component-padding * 1.5;
-  padding-top: @tab-height !important;
+  @padding: @component-padding * 0.5;
+
+  .breadcrumb {
+    position: absolute;
+    left:     0;
+    right:    0;
+    z-index:  1;
+    background: @color-black;
+    padding: 1em;
+    text-transform: uppercase;
+    text-align: center }
+
+  .package-container {
+    display: flex;
+    flex-flow: row wrap;
+    > * {
+      flex: 1 0 33%;
+      min-width: 16em;
+      display: flex;
+      align-items: stretch;
+      > * {
+        flex: 1 0 auto;
+      }
+    }
+  }
 
   .package-card {
+    position: relative;
     background: fade(white, 0.2);
     padding: @padding * 1.5 @padding;
     margin: 0 1px 1px 0;
@@ -12,6 +36,14 @@
 
     .body {
       font-size: @font-size * 0.85 }
+
+    .btn-group {
+      float: none;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-size: 0.75em;
+    }
 
     .stats {
       float: none !important;

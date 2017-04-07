@@ -4,34 +4,60 @@
 // @color-background:  #0d0a11;
 // @color-info:        #3c29b3;
 // @color-info:        #cc21f2;
+@gradient-berry: linear-gradient(
+  84deg,
+  extract(@color-reds, 5) 0px,
+  extract(@color-reds, 3) 5vw,
+  extract(@color-reds, 1) 35vw,
+  extract(@color-blues, 5) 100vw );
 
-@color-base:        #3a3742, #605c71, #ede9f0;
+@gradient-sunset: linear-gradient(84deg,
+  #5621f3 0vw,
+  #1f8ceb 10vw,
+  #0cf289 33vw,
+  #deaa93 100vw);
+
+
+@color-base:        #dedfd7, #b1a4b9, #edeaf0, #282833, #161520;
 @color-highlight:   #37bcfe, #1feda8, #ed4581, #f6599b, #80eb5a;
-@color-states:      #0053cf, #21f2b2, #2168f2, #f22166;
-@color-states:      #736194, #61bda1, #5d7ebd, #b84a6e;
 
-@color-selected:    extract(@color-base,   1);
-@color-foreground:  extract(@color-base,   2);
-@color-background:  extract(@color-base,   3);
-@color-info:        extract(@color-states, 1);
-@color-success:     extract(@color-states, 2);
-@color-warning:     extract(@color-states, 3);
-@color-error:       extract(@color-states, 4);
+@color-reds:        #b84a6e, #fe3e69, #f22166, #fe0f64, #7a1f43, #ee207d;
+@color-blues:       #0053cf, #2168f2, #2d97fa, #5d7ebd, #7098bb;
+@color-state:       #0053cf, #21f2b2, #2168f2, #f22166;
+@color-state-muted: #736194, #61bda1, #5d7ebd, #b84a6e;
+@color-state-vivid: #5859cf, #55c9a6, #2ee794, #ff185e;
 
-@notification-background-color: white;
-@notification-text-color:       @text-color-subtle;
-@tool-panel-box-shadow:         0 0 2.4em darken(@tool-panel-border-color, 8%);
+@color-white:       extract(@color-base,   1);
+@color-selected:    extract(@color-base,   2);
+@color-foreground:  extract(@color-base,   3);
+@color-background:  extract(@color-base,   4);
+@color-black:       extract(@color-base,   5);
+
+@color-info:        extract(@color-state-vivid, 1);
+@color-success:     extract(@color-state-vivid, 2);
+@color-warning:     extract(@color-state-vivid, 3);
+@color-error:       extract(@color-state-vivid, 4);
+
+
+@notification-background-color: @color-black;
+@notification-text-color:       @color-white;
+
+@tool-panel-box-shadow:         none; // 0 0 0.4em darken(@tool-panel-border-color, 2%);
+
+@workspace-shadow:              0 0 2em rgba(0, 0, 0, 0.1);
+@workspace-header-border-width: 1px;
+@workspace-header-gradient:     #5621f3 0%, #1f8ceb 10%, #0cf289 33%, #deaa93 100%;
 
 @ui-size:                       16px;
 @font-weight:                   300;
 @tool-panel-outline-size:       1px;
-@overlay-input-text-size:       3em;
+@overlay-input-text-size:       2.6em;
 @notification-icon-size:        2rem;
 @scrollbar-size:                8px;
 @scrollbar-gutter:              0px;
 
-@tab-font-size:                 @font-size * 0.72;
-@list-font-size:                @font-size * 0.9;
+@tab-font-size:                 @font-size * 0.75;
+@list-font-size:                @font-size * 0.88;
 @status-bar-height:             @component-padding * 2.5;
 @status-bar-gutter:             @component-padding * 0.75;
 @component-border-radius-round: @component-padding * 2;

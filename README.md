@@ -1,8 +1,8 @@
-# Icaros UI theme package
+# Raven UI theme package
 
 ![Display screenshot](https://tuomashatakka.github.io/icaros-ui/assets/feat.png)
 
-A light & minimal Atom.io user interface theme.
+A dark & minimal Atom.io user interface theme.
 
 Try it and be amazed. ☃
 

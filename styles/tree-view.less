@@ -1,42 +1,101 @@
+@handle-size: 0.75rem;
 .tree-view {
-  font-size: @list-font-size;
+  @height: @component-line-height * 1rem;
+  @caret-size: 0.25 * @component-padding;
+
+  --selection-background-color: lighten(@background-color-selected, 5%);
+  --selection-background-color-dimmed: @background-color-selected;
+
+  &:focus {
+    --selection-background-color: @background-color-selected }
+
+  padding:    0;
+  position:   static;
+  font-size:  @list-font-size;
   background: @tree-view-background-color;
-  padding: 0;
+
+  // Highlighted row background
+  .selected {
+    position: relative }
+
+  .selected::before,
+  .selected::after {
+    transition: @transition-default }
 
   .selected::before {
-    background: lighten(@background-color-selected, 5%);
-    height: @component-line-height * 1rem;
-  }
+    top:        0;
+    background: var(--selection-background-color) !important;
+    height:     @component-line-height * 1rem }
+
+  .selected:not(.project-root)::after {
+    top:      0;
+    right:    100%;
+    content:  '';
+    position: absolute;
+    border-width: @height/2 @caret-size @height/2 0;
+    border-style: solid;
+    border-color: transparent var(--selection-background-color) transparent transparent }
 
   .project-root > .header.project-root-header {
+    padding:     0 @component-padding / 2 !important;
+    line-height: @tab-height !important;
+    height:      @tab-height;
+    width:       100%;
+    z-index:     3 }
+
+  .project-root.expanded {
+    position: absolute;
+    width:    100%;
+    top:      0;
+    bottom:   0;
+    right:    0;
+    z-index:  50 }
+
+  .project-root.expanded ~.project-root {
+    display: none; }
+
+  .project-root::before {
+    height: @tab-height }
+
+  .project-root.expanded::before {
+    background-color: var(--selection-background-color-dimmed);
+    top: 0;
+    width: 100%;
     height: @tab-height;
-    line-height: @line-height !important;
-    padding: (@tab-height - @line-height) / 2 @component-padding / 2 !important
-  }
+    z-index: 4 }
+
+  .project-root.expanded .project-root-header {
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    padding-bottom: 0; }
+
+  .project-root.expanded > .list-tree {
+    top: @tab-height;
+    position: absolute;
+    overflow: auto;
+    bottom: 0;
+    width: 100%;
+    right: 0 }
+
   .project-root::before,
   .project-root:focus::before,
   .project-root.selected::before,
   .project-root.selected.collapsed::before,
   .project-root.selected.expanded::before,
   .project-root.selected:focus::before {
-    height: @tab-height;
-  }
-}
+    height: @tab-height }}
 
 .tree-view-resizer {
   .tree-view-resize-handle {
-    width: 0.5rem }}
+    width: @handle-size }}
 
 .focusable-panel {
   opacity: 1;
 
   &:focus {
     .selected::before {
-      background: @background-color-selected;
-      height: @component-line-height * 1rem;
-    }
-  }
-}
+      height: @component-line-height * 1rem }}}
 
 [data-show-on-right-side=true] {
   .tree-view .selected:before,

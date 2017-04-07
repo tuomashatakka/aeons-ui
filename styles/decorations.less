@@ -1,0 +1,85 @@
+
+@collapsed-panel-width: @tab-height;
+
+// Gradient top border
+atom-workspace {
+  border-width: 0;
+  position: relative }
+
+.gradient-border(@colors: @workspace-header-gradient; @width: @workspace-header-border-width; @co: 0 0 auto 0) {
+  &::before {
+    @gradient: linear-gradient(100deg, ~"@{colors}");
+    // @workspace-header-gradient;
+
+    background: extract(@color-blues, 5) @gradient;
+    height:     @width;
+
+    mix-blend-mode: exclusion;
+    overflow: visible !important;
+    position: absolute;
+    display:  block;
+    z-index:  1000;
+    margin:   0;
+    top:      extract(@co, 1);
+    left:     extract(@co, 2);
+    bottom:   extract(@co, 3);
+    right:    extract(@co, 4);
+    content:  "" }}
+
+atom-workspace {
+  .gradient-border }
+
+atom-panel.modal {
+  .gradient-border }
+
+.modal .character-match {
+  font-weight: 500 !important;
+  letter-spacing: -0.05em !important }
+
+
+atom-text-editor:not(.mini),
+atom-text-editor:not(.mini) .gutter,
+atom-text-editor:not(.mini) > *,
+atom-text-editor:not(.mini) > * > * {
+   background: @tab-background-color-active }
+
+.rv-toggle-handle {
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  width: 100%;
+  height: @collapsed-panel-width;
+  line-height: @collapsed-panel-width;
+  padding: 0;
+  margin: 0;
+  bottom: 0;
+  transition: 1.2s max-height, 1s top;
+  &::before {
+    display: block;
+    position: relative;
+    bottom: 0;
+    height: inherit;
+    line-height: inherit;
+    transition: transform .3s }}
+
+atom-panel {
+  transition: .3s all;
+  max-width: 100vw;
+
+  &.right .rv-toggle-handle { right: 0 }
+  &.left, &.right {           max-width: 30vw }
+  &.right.collapsed .rv-toggle-handle::before { transform: rotate(180deg) }
+  &.left .rv-toggle-handle::before {            transform: rotate(180deg) }
+  &.right .rv-toggle-handle::before {           transform: rotate(360deg) }
+  &.left.collapsed .rv-toggle-handle::before {  transform: rotate(360deg) }
+
+  &.collapsed {
+    max-width: @collapsed-panel-width * 0.75;
+    overflow: hidden;
+
+  .rv-toggle-handle::before {
+    margin-top: -@collapsed-panel-width/2 !important }
+  .rv-toggle-handle {
+    background: darken(@panel-background-color, 1%);
+    color: lighten(@panel-background-color, 5%);
+    width: @collapsed-panel-width * 0.75 }}}

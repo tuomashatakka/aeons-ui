@@ -1,6 +1,5 @@
 
 @import 'ui-variables-custom';
-@import 'syntax-variables';
 
 // Text
 @text-color:            @color-foreground;
@@ -20,31 +19,32 @@
 @text-color-error:    @color-error;
 @text-color-removed:  @color-error;
 
-// Background
-@background-color-info:             desaturate(darken(@color-info, 25%), 20%);
-@background-color-success:          desaturate(darken(@color-success, 25%), 15%);
-@background-color-warning:          desaturate(darken(@color-warning, 35%), 15%);
-@background-color-error:            desaturate(darken(@color-error, 25%), 15%);
+// Backgroundno
+@background-color-info:             desaturate(darken(@color-info, 15%), 5%);
+@background-color-success:          desaturate(darken(@color-success, 25%), 6%);
+@background-color-warning:          desaturate(darken(@color-warning, 22.5%), 10%);
+@background-color-error:            saturate(darken(@color-error, 20%), 25%);
 @background-color-highlight:        lighten(@base-background-color, 4%);
 @background-color-selected:         lighten(@base-background-color, 8%);
 
 // Base
 @app-background-color:              @color-background;
 @base-background-color:             @color-background;
-@base-border-color:                 darken(@color-background, 5%);
+@base-border-color:                 darken(@color-background, 3%);
 
 // Components
 @pane-item-background-color:        @color-background;
-@panel-background-color:            lighten(@color-background, 2%);
-@tool-panel-background-color:       transparent;
-@tree-view-background-color:        @tool-panel-background-color;
-@inset-panel-background-color:      lighten(@color-background, 4%);
-@panel-heading-background-color:    @color-background;
+@panel-background-color:            darken(@color-background, 1%);
+@panel-heading-background-color:    @panel-background-color;
+@inset-panel-background-color:      @panel-background-color;
+@tool-panel-background-color:       @panel-background-color;
+@tree-view-background-color:        @panel-background-color;
 @overlay-background-color:          @color-background;
-@button-background-color:           @color-background;
+@button-background-color:           lighten(@color-background, 5%);
 @button-background-color-hover:     lighten(@button-background-color, 2%);
 @button-background-color-selected:  @color-background;
-@input-background-color:            darken(@color-background, 6%);
+@input-background-color:            lighten(@panel-background-color, 6%);
+@input-background-color-focus:      lighten(@panel-background-color, 10%);
 
 @panel-heading-border-color:        @base-border-color;
 @pane-item-border-color:            @base-border-color;
@@ -55,9 +55,9 @@
 @input-border-color:                @base-border-color;
 @button-border-color:               @base-border-color;
 
-@tab-bar-background-color:          mix(@color-background, @syntax-background-color, 15%);
-@tab-background-color-active:       lighten(@color-background, 3%);
-@tab-background-color:              @color-background;
+@tab-bar-background-color:          @panel-background-color;
+@tab-background-color:              @panel-background-color;
+@tab-background-color-active:       lighten(@color-background, 8%);
 @tab-border-color:                  darken(@tab-background-color, 2%);
 @tab-bar-border-color:              transparent;
 
@@ -67,24 +67,26 @@
 @ui-site-color-4:                   extract(@color-highlight, 4);
 @ui-site-color-5:                   extract(@color-highlight, 5);
 
-@scrollbar-color:                   @color-background;
-@scrollbar-color-editor:            @color-background;
-@scrollbar-background-color:        @color-background;
+@scrollbar-color:                   @color-foreground;
+@scrollbar-color-editor:            @panel-background-color;
+@scrollbar-background-color:        @panel-background-color;
 @scrollbar-background-color-editor: transparent;
 
 // Sizes
 @font-size:               1em;
 @input-font-size:         1em;
 @disclosure-arrow-size:   1rem;
-@component-padding:       1rem;
+@component-padding:       1.33rem;
 @component-icon-padding:  0.5rem;
-@component-icon-size:     1rem;
-@component-line-height:   1.5;
-@component-border-radius: 3px;
+@component-icon-size:     14px;
+@component-line-height:   1.7685;
+@component-border-radius: 1.5px;
 @tab-height:              3rem;
 
 // Font
-@font-family: "Helvetica Neue",
+@font-family: "Hiragino Sans",
+              "Gotham",
+              "Helvetica Neue",
               Roboto,
               'BlinkMacSystemFont',
               'Segoe UI',

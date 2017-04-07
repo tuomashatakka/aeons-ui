@@ -1,7 +1,7 @@
 {
-  "name": "icaros-ui",
-  "version": "0.1.1",
-  "main": "./lib/index.js",
+  "name": "raven-ui",
+  "version": "0.0.0",
+  "main": "./lib/index",
   "theme": "ui",
   "author": {
     "name": "Tuomas Hatakka",
@@ -66,6 +66,38 @@
           "default": 100,
           "minimum": 50,
           "maximum": 150
+        },
+        "tabHeight": {
+          "order": 3,
+          "title": "Tab Height",
+          "description": "Tab bar's height",
+          "type": "number",
+          "default": 1,
+          "enum": [
+            0.6,
+            0.8,
+            1,
+            1.2,
+            1.4,
+            1.6,
+            1.8,
+            2
+          ]
+        },
+        "statusBarHeight": {
+          "order": 4,
+          "title": "Status Bar Height",
+          "description": "Factor for the status bar's height",
+          "type": "number",
+          "default": 1,
+          "enum": [
+            0.25,
+            0.5,
+            0.75,
+            1,
+            1.25,
+            1.5
+          ]
         }
       }
     }

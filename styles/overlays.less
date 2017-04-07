@@ -2,6 +2,7 @@
 @backdrop-blur:      3px;
 @backdrop-fade-in:   1s;
 @backdrop-fade-out:  300ms;
+@overlay-width:      880px;
 @overlay-box-shadow: 0 0 10px fade(black, 15%);
 
 atom-workspace-axis.horizontal,
@@ -21,36 +22,54 @@ atom-panel.modal,
 
   color:         @text-color;
   background:    @overlay-background-color;
-  border-radius: @component-border-radius;
+  border-radius: @component-border-radius * 4;
+  border-color:  mix(@overlay-background-color, @overlay-border-color, 96%) !important;
   box-shadow:    @overlay-box-shadow;
   border:        1px solid @overlay-border-color;
   padding:       @component-padding;
+  width:         @overlay-width;
+  margin:        0;
+  transform:     translateX(-50%);
 
   atom-text-editor[mini] {
+    .octicon(chevron-right);
+    &::before {
+      font-size: inherit;
+      vertical-align: middle;
+      height: inherit;
+      line-height: inherit;
+      padding-right: 1rem;
+      color: mix(@overlay-background-color, @text-color, 85%) }
     .type(overlay-input);
-    margin-bottom: 0;
-    padding: @component-padding @component-padding !important;
-    max-height: none !important;
-    height: auto !important;
-    line-height: 1em !important;
-    border: none;
-    box-shadow: none;
-    background: transparent }
+    margin-bottom:  0;
+    padding:        0 @component-padding @component-padding !important;
+    max-height:     none !important;
+    height:         auto !important;
+    border:         none;
+    box-shadow:     none;
+    background:     transparent }
 
 
   &.select-list {
     padding: 0 }
 
+  .select-list,
+  &.select-list {
+
+  }
   .select-list ol.list-group,
   &.select-list ol.list-group {
 
+    border-top: 1px solid mix(@overlay-background-color, @overlay-border-color, 90%) !important;
+    border-width:  0;
     margin: 0 -@component-padding -@component-padding;
-    background-color: lighten(@overlay-background-color, 3%);
+    background-color: mix(@overlay-background-color, @overlay-border-color, 90%);
     max-height: 70vh;
 
     li {
+      color: @text-color-subtle;
       padding: @component-padding;
-      border-bottom: 1px solid @overlay-background-color;
+      border-bottom: 0px solid @overlay-background-color;
 
       &.two-lines {
         padding: @component-padding/2 @component-padding; }
@@ -63,5 +82,7 @@ atom-panel.modal,
           margin-right: 0 }}
 
       &.selected {
+        color: @text-color-selected;
+
         .status.icon {
-          color: @text-color-selected }}}}}
+          color: inherit }}}}}
