@@ -18,14 +18,14 @@
   #deaa93 100vw);
 
 
-@color-base:        #dedfd7, #b1a4b9, #edeaf0, #282833, #161520;
+@color-base:        #dedfd7, #b1a4b9, #edeaf0, #282833, #25202f;
 @color-highlight:   #37bcfe, #1feda8, #ed4581, #f6599b, #80eb5a;
 
 @color-reds:        #b84a6e, #fe3e69, #f22166, #fe0f64, #7a1f43, #ee207d;
 @color-blues:       #0053cf, #2168f2, #2d97fa, #5d7ebd, #7098bb;
-@color-state:       #0053cf, #21f2b2, #2168f2, #f22166;
+@color-state:       #9bd1f6, #21f2b2, #bb6dbf, #f22166;
 @color-state-muted: #736194, #61bda1, #5d7ebd, #b84a6e;
-@color-state-vivid: #5859cf, #55c9a6, #2ee794, #ff185e;
+@color-state-vivid: #8586ff, #29ffbe, #adf983, #ff185e;
 
 @color-white:       extract(@color-base,   1);
 @color-selected:    extract(@color-base,   2);
@@ -33,10 +33,10 @@
 @color-background:  extract(@color-base,   4);
 @color-black:       extract(@color-base,   5);
 
-@color-info:        extract(@color-state-vivid, 1);
-@color-success:     extract(@color-state-vivid, 2);
-@color-warning:     extract(@color-state-vivid, 3);
-@color-error:       extract(@color-state-vivid, 4);
+@color-info:        extract(@color-state, 1);
+@color-success:     extract(@color-state, 2);
+@color-warning:     extract(@color-state, 3); 
+@color-error:       extract(@color-state, 4);
 
 
 @notification-background-color: @color-black;
@@ -56,8 +56,8 @@
 @scrollbar-size:                8px;
 @scrollbar-gutter:              0px;
 
-@tab-font-size:                 @font-size * 0.75;
-@list-font-size:                @font-size * 0.88;
+@tab-font-size:                 @font-size * 0.95;
+@list-font-size:                @font-size * 0.95;
 @status-bar-height:             @component-padding * 2.5;
 @status-bar-gutter:             @component-padding * 0.75;
 @component-border-radius-round: @component-padding * 2;

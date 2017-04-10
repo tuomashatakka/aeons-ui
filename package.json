@@ -1,5 +1,5 @@
 {
-  "name": "raven-ui",
+  "name": "aeons-ui",
   "version": "0.0.0",
   "main": "./lib/index",
   "theme": "ui",
@@ -8,7 +8,7 @@
     "email": "tuomas.hatakka@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/tuomashatakka/icaros-ui/issues"
+    "url": "https://github.com/tuomashatakka/aeons-ui/issues"
   },
   "dependencies": {
     "etch": "^0.10.0"
@@ -18,7 +18,7 @@
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "homepage": "https://github.com/tuomashatakka/icaros-ui",
+  "homepage": "https://github.com/tuomashatakka/aeons-ui",
   "keywords": [
     "dark",
     "clean",
@@ -208,5 +208,5 @@
   "optionalDependencies": {},
   "readmeFilename": "README.md",
   "license": "MIT",
-  "repository": "https://github.com/tuomashatakka/icaros-ui"
+  "repository": "https://github.com/tuomashatakka/aeons-ui"
 }

@@ -3,10 +3,10 @@
 @modified: ~".modified:not(:hover)";
 @modified-hover: ~".modified:hover";
 @tab-hover-box-shadow: 0 0 1em fade(black, 5%);
+@tab-active-box-shadow: 0 0 1em fade(#404040, 7%);
 
 .gradient(@start, @end: transparent) {
-  background-image: linear-gradient(120deg, @start, @end)
-}
+  background-image: linear-gradient(120deg, @start, @end) }
 
 .tab-bar {
   @bg-bar: @tab-bar-background-color;
@@ -15,10 +15,11 @@
     lighten(@tab-background-color, 6%), // Hovered
     @tab-background-color-active, // Active
     lighten(@tab-background-color-active, 10%), // Active hovered
-    @background-color-warning, // Modified
-    @text-color-warning;  // Modified hovered
+    mix(@tab-background-color-active, @background-color-warning), // Modified
+    mix(@tab-background-color-active, lighten(@text-color-warning, 10%)),  // Modified hovered
+    mix(@tab-background-color-active, saturate(@text-color-info, 10%), 40%);  // Modified active
 
-  // .gradient(@color-background, lighten(@color-background, 6%));
+  .gradient(@color-background, lighten(@color-background, 6%));
   --height:        @tab-height;
   height:          var(--height, @tab-height);
   line-height:     var(--height, @tab-height);
@@ -47,6 +48,7 @@
   .tab .title {
     .type(tabs);
     font-size: @tab-font-size }
+
   .tab.active .title {
     .type(active) }
 
@@ -55,33 +57,25 @@
     font-size:      1em;
     color:          inherit;
     vertical-align: middle;
+    display:        inline-block;
     margin-top:    -3px }
 
   // States
   .tab:hover,
   .tab.active {
     margin-top: 2px;
-    border-radius: @component-border-radius;
+    z-index: 5;
+    border-radius: @component-border-radius * 1.5;
     color: @text-color-highlight }
 
-  // .tab.active::before {
-  //   content: "";
-  //   display: block;
-  //   position: absolute;
-  //   bottom: -4px;
-  //   right: 0;
-  //   border: 0 solid transparent;
-  //   border-top-color: extract(@bg, 3);
-  //   border-width: 4px 0 0 12px }
-
   .tab:hover {
-    z-index: 5;
     box-shadow: @tab-hover-box-shadow;
     border-color: lighten(@tab-border-color, 5%);
     background-color: extract(@bg, 2) }
 
   .tab.active {
     flex-grow: 1;
+    box-shadow: 1px 3px 1em @tab-active-box-shadow;
     border-color: lighten(@tab-border-color, 2%);
     background-color: extract(@bg, 3) }
 
@@ -97,6 +91,11 @@
   .tab@{modified-hover} {
     background-color: extract(@bg, 6);
     .tab-icon(hover) }
+
+  .tab.active.modified,
+  .tab.active.modified:hover {
+    background-color: extract(@bg, 7);
+    .tab-icon(modified) }
 
   // Close icon hover color
   .tab .close-icon:hover,
@@ -149,3 +148,14 @@
   .close-icon {
     background: lighten(@tab-background-color-active, 10%);
     color: @text-color-highlight }}
+
+
+// .tab.active::before {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   bottom: -4px;
+//   right: 0;
+//   border: 0 solid transparent;
+//   border-top-color: extract(@bg, 3);
+//   border-width: 4px 0 0 12px }

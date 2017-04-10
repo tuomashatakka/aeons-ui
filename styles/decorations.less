@@ -1,4 +1,5 @@
 
+@collapsed-panel-height: 2em;
 @collapsed-panel-width: @tab-height;
 
 // Gradient top border
@@ -41,19 +42,21 @@ atom-text-editor:not(.mini),
 atom-text-editor:not(.mini) .gutter,
 atom-text-editor:not(.mini) > *,
 atom-text-editor:not(.mini) > * > * {
-   background: @tab-background-color-active }
+  background: @base-background-color; }
+  //  background: @tab-background-color-active }
 
 .rv-toggle-handle {
   position: absolute;
   display: block;
   z-index: 1000;
   width: 100%;
-  height: @collapsed-panel-width;
-  line-height: @collapsed-panel-width;
+  height: @collapsed-panel-height;
+  line-height: @collapsed-panel-height;
   padding: 0;
   margin: 0;
   bottom: 0;
   transition: 1.2s max-height, 1s top;
+
   &::before {
     display: block;
     position: relative;
@@ -78,8 +81,11 @@ atom-panel {
     overflow: hidden;
 
   .rv-toggle-handle::before {
+
     margin-top: -@collapsed-panel-width/2 !important }
   .rv-toggle-handle {
+    top: 0;
+    bottom: 0;
     background: darken(@panel-background-color, 1%);
     color: lighten(@panel-background-color, 5%);
     width: @collapsed-panel-width * 0.75 }}}

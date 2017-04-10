@@ -3,8 +3,8 @@
 
 @tree-view-indent:  1rem;
 @chevron-size:      10px;
-@icon-size:         1.2em;
-@list-icon-size:    2rem;
+@icon-size:         1.4em;
+@list-icon-size:    0.9rem;
 @line-height:       @component-line-height * 1rem;
 
 // List views
@@ -27,6 +27,7 @@
   // Icons
   .icon::before,
   .list-item::before {
+    font-size: @list-icon-size;
     color: inherit }
 
   // Foldable items (folders etc)
