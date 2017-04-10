@@ -59,24 +59,22 @@
 
   .project-root.expanded::before {
     background-color: var(--selection-background-color-dimmed);
-    top: 0;
-    width: 100%;
-    height: @tab-height;
-    z-index: 4 }
+    top:      0;
+    height:   @tab-height;
+    z-index:  4 }
 
   .project-root.expanded .project-root-header {
+    top:      0;
+    z-index:  4;
     position: absolute;
-    top: 0;
-    z-index: 4;
     padding-bottom: 0; }
 
   .project-root.expanded > .list-tree {
-    top: @tab-height;
+    top:      @tab-height;
     position: absolute;
     overflow: auto;
-    bottom: 0;
-    width: 100%;
-    right: 0 }
+    bottom:   0;
+    right:    0 }
 
   .project-root::before,
   .project-root:focus::before,
