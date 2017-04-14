@@ -15,7 +15,7 @@ atom-workspace {
     background: extract(@color-blues, 5) @gradient;
     height:     @width;
 
-    mix-blend-mode: exclusion;
+    mix-blend-mode: screen;
     overflow: visible !important;
     position: absolute;
     display:  block;
@@ -27,18 +27,18 @@ atom-workspace {
     right:    extract(@co, 4);
     content:  "" }}
 
-atom-workspace {
+atom-workspace-axis.vertical {
   .gradient-border }
 
 atom-panel.modal {
-  .gradient-border }
+  .gradient-border("#ff40ba 0%, #c7ff92 33%, #deaa93 100%") }
 
 .modal .character-match {
   font-weight: 500 !important;
   letter-spacing: -0.05em !important }
 
 
-atom-text-editor:not(.mini), 
+atom-text-editor:not(.mini),
 atom-text-editor:not(.mini) .gutter,
 atom-text-editor:not(.mini) > *,
 atom-text-editor:not(.mini) > * > * {
@@ -89,3 +89,14 @@ atom-panel {
     background: darken(@panel-background-color, 1%);
     color: lighten(@panel-background-color, 5%);
     width: @collapsed-panel-width * 0.75 }}}
+
+atom-dock {
+  margin: 0.4em 0.8em 2em 0em;
+  position: relative;
+
+  atom-pane-container,
+  atom-pane,
+  .tab-bar,
+  .tab {
+    background: transparent;
+    box-shadow: none }}

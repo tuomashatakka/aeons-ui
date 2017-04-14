@@ -12,17 +12,17 @@
 @text-color-success:    saturate(lighten(@color-success, 5%), 5%);
 @text-color-added:      @color-success;
 
-@text-color-warning:    saturate(lighten(@color-warning, 5%), 5%);
+@text-color-warning:    saturate(lighten(@color-warning, 5%), 25%);
 @text-color-modified:   saturate(lighten(@color-warning, 2.5%), 5%);
 @text-color-renamed:    @color-warning;
 
-@text-color-error:      @color-error;
+@text-color-error:      desaturate(lighten(@color-error, 8%), 20%);
 @text-color-removed:    @color-error;
 
 // Backgroundno
 @background-color-info:             desaturate(darken(@color-info, 15%), 5%);
 @background-color-success:          desaturate(darken(@color-success, 14%), 6%);
-@background-color-warning:          desaturate(darken(@color-warning, 8%), 5%);
+@background-color-warning:          desaturate(darken(@color-warning, 15%), 25%);
 @background-color-error:            saturate(darken(@color-error, 8%), 25%);
 @background-color-highlight:        lighten(@base-background-color, 4%);
 @background-color-selected:         lighten(@base-background-color, 8%);

@@ -1,11 +1,12 @@
 
-@import "octicon-mixins.less"; // https://github.com/atom/atom/blob/master/static/variables/octicon-mixins.less
+// https://github.com/atom/atom/blob/master/static/variables/octicon-mixins.less
+@import "octicon-mixins.less";
 
 @tree-view-indent:  1rem;
 @chevron-size:      10px;
 @icon-size:         1.4em;
-@list-icon-size:    0.9rem;
-@line-height:       @component-line-height * 1rem;
+@list-icon-size:    1rem;
+@line-height:       @component-line-height * 1.2rem;
 
 // List views
 .list-group,
@@ -13,8 +14,7 @@
 
   // Default indentation for subitems
   margin:  0 0 0 @tree-view-indent;
-  padding:   0;
-
+  padding: 0;
   div > & {
     margin:  0 }
 
@@ -24,6 +24,8 @@
     padding:     0 !important;
     height:      @line-height;
     line-height: @line-height;
+    transition:  @transition-default;
+    cursor:      pointer;
 
   atom-panel & {
     height:      auto }}
@@ -76,7 +78,16 @@
 
 // List view items
 .list-item > .name {
-  display: inline-block }
+  transition: @transition-default;
+  display:    inline-block }
+
+.list-item:hover {
+  border-radius:    2px;
+  transition-duration: .1s;
+  background-color: mix(@background-color-highlight, @tree-view-background-color) }
+
+.list-item:hover > .name {
+  color: @text-color-subtle }
 
 .list-item > .name::before {
   vertical-align: baseline;
@@ -89,41 +100,16 @@
 
 .select-list ol.list-group {
 // &.select-list ol.list-group {
+
   li {
     border: none;
     position: relative }
-  li.two-lines {
-    color: @text-color-subtle;
-
-    .icon {
-      padding-left: @list-icon-size;
-    }
-    .icon::before {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      line-height: @list-icon-size;
-      font-size: @list-icon-size;
-      display: inline-block;
-      margin: 0;
-      width: @list-icon-size;
-    }
-
-    .secondary-line {
-      display: block;
-      padding: 0 0 0 @component-icon-padding + @list-icon-size;
-      color: @text-color-subtle }
-
-    &.selected .secondary-line {
-      color: inherit;
-      text-shadow: none }}
 
   li.selected {
     background-color: @background-color-selected;
     &:before { display: none }}
 
-  &.mark-active{
+  &.mark-active {
     @active-icon-size: 14px;
 
     li:before {
@@ -142,7 +128,37 @@
 
       &:before {
         margin-right: @component-icon-padding;
-        color: @text-color-success }}}}
+        color: @text-color-success }}}
+
+  li.two-lines {
+    color: @text-color-subtle;
+
+    .icon {
+      position: static;
+      padding-left: @list-icon-size }
+
+    .icon:not(.status)::before {
+      position: absolute;
+      display:  block;
+      margin:   -0.5 * @list-icon-size 0 0;
+      top:      50%;
+      left:     2px;
+      text-align: center;
+      // transform:   translateY(-50%);
+      font-size:   @list-icon-size;
+      width:       @list-icon-size }
+
+    .secondary-line {
+      display: block;
+      padding: 0 0 0 @component-icon-padding + @list-icon-size;
+      color: inherit }
+
+    &.selected .secondary-line {
+      color: inherit;
+      text-shadow: none }}
+
+
+}
 
 .select-list.popover-list {
   background-color:   @overlay-background-color;
@@ -181,8 +197,8 @@ li.ui-sortable-helper {
 .list-item-status(@color, @status) {
   li.list-item:not(.list-nested-item).status-@{status},
   li.list-nested-item.status-@{status} > .list-item {
-    color: mix(@color, @text-color, 55%);
+    color: mix(@color, @text-color, 75%);
   &.selected {
-    color: mix(@color, @text-color, 88%)
+    color: mix(@color, @text-color, 92%)
 }}
 }

@@ -10,11 +10,9 @@ atom-panel-container.right {
   border-color: @tool-panel-border-color;
   border-width: 0;
   border-style: solid;
-  overflow-y:   hidden;
-  overflow:     initial;
+
   atom-panel {
-    box-shadow: @tool-panel-box-shadow }
-}
+    box-shadow: @tool-panel-box-shadow }}
 
 // atom-panel-container.right { border-left-width: @tool-panel-outline-size }
 // atom-panel-container.left { border-right-width: @tool-panel-outline-size }
@@ -51,20 +49,26 @@ atom-panel,
     border-top-width: 0 }}
 
 status-bar {
-  @height:      @status-bar-height - @status-bar-gutter;
+  @height: @status-bar-height - @status-bar-gutter;
   line-height:  var(--height, @status-bar-height);
   min-height:   var(--height, @status-bar-height);
 
   svg {
     height: auto !important }
+
   > * {
     display:        inherit; }
+
+  .status-bar-left {
+    justify-content: flex-start }
+
+  .status-bar-right {
+    justify-content: flex-end }
 
   .status-bar-left,
   .status-bar-right {
     vertical-align: middle;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     padding: 0 }
 
@@ -99,11 +103,11 @@ status-bar {
   .status-bar-left > .inline-block {
     margin-right: 0;
     margin-left: @status-bar-gutter }
+
   .status-bar-right > * ,
   .status-bar-right > .inline-block {
     margin-left: 0;
-    margin-right: @status-bar-gutter }
-}
+    margin-right: @status-bar-gutter }}
 
 .tool-bar {
   border: none }
@@ -111,12 +115,6 @@ status-bar {
 .inset-panel {
   position:         relative;
   background-color: @inset-panel-background-color }
-
-.is-blurred {
-  atom-panel,
-  .inset-panel {
-  }
-}
 
 .panel-heading {
 

@@ -1,7 +1,8 @@
 @handle-size: 0.75rem;
+@height: @component-line-height * 1.2rem;
+@caret-size: 0.45 * @component-padding;
+
 .tree-view {
-  @height: @component-line-height * 1rem;
-  @caret-size: 0.25 * @component-padding;
 
   --selection-background-color: lighten(@background-color-selected, 5%);
   --selection-background-color-dimmed: @background-color-selected;
@@ -14,6 +15,11 @@
   font-size:  @list-font-size;
   background: @tree-view-background-color;
 
+  ol.list-tree {
+    margin-right: 0 !important;
+    padding: 0;
+    width: auto }
+
   // Highlighted row background
   .selected {
     position: relative }
@@ -25,7 +31,7 @@
   .selected::before {
     top:        0;
     background: var(--selection-background-color) !important;
-    height:     @component-line-height * 1rem }
+    height:     @component-line-height * 1.2em }
 
   .selected:not(.project-root)::after {
     top:      0;
@@ -59,14 +65,14 @@
 
   .project-root.expanded::before {
     background-color: var(--selection-background-color-dimmed);
-    top:      0;
     height:   @tab-height;
+    top:      0;
     z-index:  4 }
 
   .project-root.expanded .project-root-header {
+    position: absolute;
     top:      0;
     z-index:  4;
-    position: absolute;
     padding-bottom: 0; }
 
   .project-root.expanded > .list-tree {
@@ -74,6 +80,7 @@
     position: absolute;
     overflow: auto;
     bottom:   0;
+    left:     0;
     right:    0 }
 
   .project-root::before,
@@ -93,7 +100,7 @@
 
   &:focus {
     .selected::before {
-      height: @component-line-height * 1rem }}}
+      height: @height }}}
 
 [data-show-on-right-side=true] {
   .tree-view .selected:before,
