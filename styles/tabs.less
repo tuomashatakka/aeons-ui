@@ -2,42 +2,60 @@
 @import "./ui-variables";
 @modified: ~".modified:not(:hover)";
 @modified-hover: ~".modified:hover";
-@tab-hover-box-shadow: 0 0 1em fade(black, 5%);
-@tab-active-box-shadow: 0 0 1em fade(#404040, 7%);
+@tab-hover-box-shadow: 0 0 1em fade(black, 15%);
+@tab-active-box-shadow: 0 0 2em fade(black, 15%);
+@tab-border-radius: 2px;
+@tab-offset-distance: 1px;
 
 .gradient(@start, @end: transparent) {
   background-image: linear-gradient(120deg, @start, @end) }
 
-.tab-bar {
-  @bg-bar: @tab-bar-background-color;
-  @bg:
-    @tab-background-color, // Default
-    lighten(@tab-background-color, 6%), // Hovered
-    @tab-background-color-active, // Active
-    lighten(@tab-background-color-active, 10%), // Active hovered
-    mix(@tab-background-color-active, @background-color-warning), // Modified
-    mix(@tab-background-color-active, lighten(@text-color-warning, 10%)),  // Modified hovered
-    mix(@tab-background-color-active, saturate(@text-color-info, 10%), 40%);  // Modified active
+.gradient3(@start, @mid, @end: transparent) {
+  background-blend-mode: darken;
+  background-image: linear-gradient(120deg, mix(@start, @tab-bar-background-color, 5%), mix(@mid, @base-background-color, 15%), mix(@end, @base-background-color, 25%)) }
 
-  .gradient(@color-background, lighten(@color-background, 6%));
-  --height:        @tab-height;
-  height:          var(--height, @tab-height);
-  line-height:     var(--height, @tab-height);
+atom-dock.right .tab-bar {
+  background: transparent !important;
+  margin: 0 0 1px -4px;
+.tab { background: transparent !important } }
+atom-dock.left .tab-bar {  margin: 0 -4px 1px 0 }
+
+
+@bg-bar: @tab-bar-background-color;
+@bg:     @tab-background-color, // Default
+         fade(lighten(@tab-background-color, 12%), 80%), // Hovered
+         fade(mix(@tab-background-color-active, @background-color-info, 50%), 75%), // Active
+         saturate(lighten(@tab-background-color-active, 25%), 18%), // Active hovered
+         fade(saturate(mix(@tab-background-color-active, @background-color-info, 25%), 25%), 75%), // Modified
+         mix(@tab-background-color-active, lighten(@text-color-warning, 10%), 25%),  // Modified hovered
+         mix(@tab-background-color-active, saturate(@text-color-info, 10%), 25%);  // Modified active
+
+.tab-bar {
+
+  .gradient3(#4e407e, #e861c6, #2dffb2);
+  // .gradient(@color-background, lighten(@color-background, 6%));
+  --height:         @tab-height;
+  height:           var(--height, @tab-height);
+  line-height:      var(--height, @tab-height);
   background-color: @bg-bar;
-  border-radius:   0;
-  border:          0 solid @tab-bar-border-color;
-  border-width:    0 !important;
+  background-color: darken(@base-background-color, 1%);
+  border-radius:    0;
+  border:           0 solid @tab-bar-border-color;
+  border-width:     0 !important;
+  box-shadow:       0.2em 0.5em 1em rgba(0,0,0,0.15);
   border-left-color: @tab-border-color;
 
+  z-index: 10;
+
   .tab {
-    // mix-blend-mode: overlay;
+    mix-blend-mode: lighten;
     transition: @transition-default, width @transition-duration, margin @transition-duration;
+    margin:     0;
     border:     0 solid @tab-border-color;
     padding:    0 @component-padding / 2;
-    background-color: extract(@bg, 1);
+    background-color: transparent;
     height:     inherit;
-    margin: 0;
-    border-width: 0 }
+    border-width: 0 !important }
 
   .tab { .tab-icon }
   .tab,  .tab .close-icon {
@@ -58,14 +76,14 @@
     color:          inherit;
     vertical-align: middle;
     display:        inline-block;
-    margin-top:    -3px }
+    margin-top:    -1px }
 
   // States
   .tab:hover,
   .tab.active {
-    margin-top: 2px;
+    margin-top: @tab-offset-distance;
     z-index: 5;
-    border-radius: @component-border-radius * 1.5;
+    border-radius: @tab-border-radius;
     color: @text-color-highlight }
 
   .tab:hover {
@@ -74,27 +92,33 @@
     background-color: extract(@bg, 2) }
 
   .tab.active {
+    z-index: 1;
     flex-grow: 1;
-    box-shadow: 1px 3px 1em @tab-active-box-shadow;
+    box-shadow: @tab-active-box-shadow;
     border-color: lighten(@tab-border-color, 2%);
+    border-color: darken(extract(@bg, 3), 5%);
     background-color: extract(@bg, 3) }
 
   .tab.active:hover {
     background-color: extract(@bg, 4);
+    border-color: darken(extract(@bg, 4), 5%);
     .tab-icon(hover) }
 
   // Close icon state overrides & transforms
   .tab@{modified} {
     background-color: extract(@bg, 5);
+    border-color: darken(extract(@bg, 5), 5%);
     .tab-icon(modified) }
 
   .tab@{modified-hover} {
     background-color: extract(@bg, 6);
+    border-color: darken(extract(@bg, 6), 5%);
     .tab-icon(hover) }
 
   .tab.active.modified,
   .tab.active.modified:hover {
     background-color: extract(@bg, 7);
+    border-color: darken(extract(@bg, 7), 5%);
     .tab-icon(modified) }
 
   // Close icon hover color
@@ -103,6 +127,10 @@
     background-color: @background-color-error;
     color: @text-color-error }
 }
+
+.list-inline {
+  .tab {
+  max-width: none }}
 
 // Helper mixin for tab icon states
 .tab-icon(@state: none) {
