@@ -1,9 +1,33 @@
 @import "buttons.less";
 @max-iter: 8;
+@handle-size: 0.75rem;
 
 .panel {
 }
 
+
+// Brand new & shiny docks!
+// Well played, atom.io developers, well played...
+
+atom-dock {
+  position: relative;
+
+  .atom-dock-resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: @handle-size }
+
+  atom-pane-container,
+  atom-pane,
+  .tab-bar,
+  .tab {
+    background: transparent;
+    box-shadow: none }}
+
+
+// Traditional panels
 atom-panel-container.left,
 atom-panel-container.right {
   background-color: @panel-background-color;

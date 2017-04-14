@@ -20,6 +20,7 @@
     padding: 0;
     width: auto }
 
+
   // Highlighted row background
   .selected {
     position: relative }
@@ -31,7 +32,7 @@
   .selected::before {
     top:        0;
     background: var(--selection-background-color) !important;
-    height:     @component-line-height * 1.2em }
+    height:     @component-line-height * 1.2rem }
 
   .selected:not(.project-root)::after {
     top:      0;
@@ -42,6 +43,8 @@
     border-style: solid;
     border-color: transparent var(--selection-background-color) transparent transparent }
 
+
+  // Project root headers
   .project-root > .header.project-root-header {
     padding:     0 @component-padding / 2 !important;
     line-height: @tab-height !important;
