@@ -21,13 +21,36 @@ atom-text-editor[mini] {
   transition:     @transition-default }
 
 // Checkboxes
-input[type="checkbox"] {
-  @size: 1.3em;
-  padding:    0;
-  margin-top: @size / 2 !important;
+input[type="checkbox"],
+.settings-view input[type="checkbox"] {
+  @size: 1.6rem;
+  border-radius: 1px;
+  // margin-top: @size / 2 !important;
   width:      @size;
   height:     @size;
-  min-height: @size }
+  min-height: @size;
+  padding:    0;
+  top:        0.2em;
+  margin:     0px 0em 0 -2 * @size;
+  border:     none !important;
+  padding:    1px }
+
+  .input-checkbox:checked::before {
+    transform: translate3d(0, 0, 0) rotate(223deg) scale(1);
+    width:      2px;
+    height:     1px;
+    top:        17px;
+    left:       15px;
+    background: @text-color-info
+  }
+  .input-checkbox:checked::after {
+    transform: translate3d(1px, 1px, 0) rotate(-50deg) scale(1);
+    width:      5px;
+    height:     1px;
+    top:        17px;
+    left:       15px;
+    background: @text-color-info
+  }
 
 // Range sliders
 input[type=range] {
