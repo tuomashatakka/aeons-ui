@@ -1,14 +1,18 @@
 
 .key-binding {
-  background:     linear-gradient(172deg, rgba(255, 105, 209, 0.1), rgba(120, 155, 153, 0.1));
+  // background:     linear-gradient(172deg, rgba(255, 105, 209, 0.1), rgba(120, 155, 153, 0.1));
   display:        inline-block;
-  line-height:    100%;
-  border-radius:  @component-border-radius;
+  line-height:    1em;
+  border-radius:  0;
   margin-left:    @component-icon-padding;
   font-family:    Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size:      @font-size;
-  padding:        @component-padding / 2 }
+  font-size:      @font-size * 0.9;
+  padding:        @component-padding / 3 @component-padding }
 
 .badge {
   .text(highlight);
-  background: @background-color-highlight }
+  display:        inline-block;
+  padding:        @component-padding / 3 @component-padding;
+  line-height:    1em;
+  border-radius:  0;
+  background:     @background-color-highlight }

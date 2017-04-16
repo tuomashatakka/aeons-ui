@@ -70,18 +70,18 @@ atom-panel.modal,
       border-bottom: 1px solid @overlay-background-color;
       transition: @transition-default;
 
-      &.two-lines {
-        padding: @component-padding/2 @component-padding; }
-
       .status.icon {
         float: right;
         margin-left: @component-icon-padding;
 
         &:before {
-          color: inherit !important;
+          height:       2.8rem;
+          width:        1.4rem;
+          color:        inherit !important;
           margin-right: 0 }}
 
       &:hover {
+        background-color: mix(@background-color-selected, @overlay-background-color);
         color: mix(@text-color-selected, @text-color-subtle) }
 
       &.selected {

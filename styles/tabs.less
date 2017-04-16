@@ -11,14 +11,19 @@
   background-image: linear-gradient(120deg, @start, @end) }
 
 .gradient3(@start, @mid, @end: transparent) {
-  background-blend-mode: darken;
+  background-blend-mode: color-dodge;
   background-image: linear-gradient(120deg, mix(@start, @tab-bar-background-color, 5%), mix(@mid, @base-background-color, 15%), mix(@end, @base-background-color, 25%)) }
+
 
 atom-dock.right .tab-bar {
   background: transparent !important;
   margin: 0 0 1px -4px;
-.tab { background: transparent !important } }
-atom-dock.left .tab-bar {  margin: 0 -4px 1px 0 }
+
+  .tab {
+    background: transparent !important } }
+
+atom-dock.left .tab-bar {
+  margin: 0 -4px 1px 0 }
 
 
 @bg-bar: @tab-bar-background-color;
@@ -27,7 +32,7 @@ atom-dock.left .tab-bar {  margin: 0 -4px 1px 0 }
          fade(mix(@tab-background-color-active, @background-color-info, 50%), 75%), // Active
          saturate(lighten(@tab-background-color-active, 25%), 18%), // Active hovered
          fade(saturate(mix(@tab-background-color-active, @background-color-info, 25%), 25%), 75%), // Modified
-         mix(@tab-background-color-active, lighten(@text-color-warning, 10%), 25%),  // Modified hovered
+         mix(@tab-background-color-active, lighten(@text-color-info, 10%), 25%),  // Modified hovered
          mix(@tab-background-color-active, saturate(@text-color-info, 10%), 25%);  // Modified active
 
 .tab-bar {
@@ -42,7 +47,7 @@ atom-dock.left .tab-bar {  margin: 0 -4px 1px 0 }
   border-radius:    0;
   border:           0 solid @tab-bar-border-color;
   border-width:     0 !important;
-  box-shadow:       0.2em 0.5em 1em rgba(0,0,0,0.15);
+  box-shadow:       0.2em 0.5em 1em rgba(0,0,0,0.05);
   border-left-color: @tab-border-color;
 
   z-index: 10;
@@ -78,47 +83,48 @@ atom-dock.left .tab-bar {  margin: 0 -4px 1px 0 }
     display:        inline-block;
     margin-top:    -1px }
 
+  .tab-state(@color) {
+    background-color: @color;
+    border-color: darken(@color, 3%);
+    &:hover {
+        background-color: lighten(@color, 8%);
+        border-color: lighten(@color, 6%) }
+  }
+
   // States
   .tab:hover,
   .tab.active {
-    margin-top: @tab-offset-distance;
     z-index: 5;
+    margin-top: @tab-offset-distance;
     border-radius: @tab-border-radius;
     color: @text-color-highlight }
 
   .tab:hover {
     box-shadow: @tab-hover-box-shadow;
-    border-color: lighten(@tab-border-color, 5%);
-    background-color: extract(@bg, 2) }
+    .tab-state(extract(@bg, 2)) }
 
   .tab.active {
     z-index: 1;
     flex-grow: 1;
     box-shadow: @tab-active-box-shadow;
-    border-color: lighten(@tab-border-color, 2%);
-    border-color: darken(extract(@bg, 3), 5%);
-    background-color: extract(@bg, 3) }
+    .tab-state(extract(@bg, 3)) }
 
   .tab.active:hover {
-    background-color: extract(@bg, 4);
-    border-color: darken(extract(@bg, 4), 5%);
+  .tab-state(extract(@bg, 4));
     .tab-icon(hover) }
 
   // Close icon state overrides & transforms
   .tab@{modified} {
-    background-color: extract(@bg, 5);
-    border-color: darken(extract(@bg, 5), 5%);
+    .tab-state(extract(@bg, 5));
     .tab-icon(modified) }
 
   .tab@{modified-hover} {
-    background-color: extract(@bg, 6);
-    border-color: darken(extract(@bg, 6), 5%);
+    .tab-state(extract(@bg, 6));
     .tab-icon(hover) }
 
   .tab.active.modified,
   .tab.active.modified:hover {
-    background-color: extract(@bg, 7);
-    border-color: darken(extract(@bg, 7), 5%);
+    .tab-state(extract(@bg, 7));
     .tab-icon(modified) }
 
   // Close icon hover color

@@ -99,7 +99,6 @@
 
 
 .select-list ol.list-group {
-// &.select-list ol.list-group {
 
   li {
     border: none;
@@ -112,11 +111,12 @@
   &.mark-active {
     @active-icon-size: 14px;
 
-    li:before {
+    li::before {
       background-color: transparent;
       position: static;
       display: inline-block;
-      left: auto; right: auto;
+      left: auto;
+      right: auto;
       height: @active-icon-size;
       width: @active-icon-size }
 
@@ -145,8 +145,8 @@
       left:     2px;
       text-align: center;
       // transform:   translateY(-50%);
-      font-size:   @list-icon-size;
-      width:       @list-icon-size }
+      font-size:   @icon-size;
+      width:       @icon-size }
 
     .secondary-line {
       display: block;
