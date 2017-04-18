@@ -43,6 +43,21 @@
     "ui"
   ],
   "configSchema": {
+    "display": {
+      "order": 2,
+      "title": "Display",
+      "description": "Hide unnecessary clutter",
+      "type": "object",
+      "properties": {
+        "dockTabs": {
+          "order": 1,
+          "title": "Show all tab bars",
+          "description": "Uncheck to disable docks' tab bars",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
     "layout": {
       "order": 1,
       "title": "Size & layout",
