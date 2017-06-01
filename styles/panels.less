@@ -1,6 +1,7 @@
 @import "buttons.less";
-@max-iter: 8;
-@handle-size: 0.75rem;
+@max-iter:      8;
+@handle-size:   0.8rem;
+@spread-factor: 0.5%;
 
 .panel {
 }
@@ -14,16 +15,29 @@ atom-dock {
 
   .atom-dock-resize-handle {
     position: absolute;
-    top: 0;
-    bottom: 0;
     z-index: 10;
-    width: @handle-size }
+
+    &.left { right: -@handle-size / 2 }
+    &.right { left: -@handle-size / 2 }
+    &.left,
+    &.right {
+      top: 0;
+      bottom: 0;
+      width: @handle-size }
+
+    &.top { bottom: -@handle-size / 2 }
+    &.bottom { top: -@handle-size / 2 }
+    &.top,
+    &.bottom {
+      left: 0;
+      right: 0;
+      height: @handle-size }}
 
   atom-pane-container,
   atom-pane,
   .tab-bar,
   .tab {
-    background: transparent;
+    // background: transparent;
     box-shadow: none }}
 
 
@@ -53,19 +67,24 @@ atom-panel,
   .text(normal);
   background-color: @panel-background-color;
   border-color:     @tool-panel-border-color;
+  background-color: @app-background-color !important;
   position:         relative;
   border-style:     solid;
   border-width:     0;
 
-  &[index='0'] {.dim(0)}
-  &[index='1'] {.dim(1)}
-  &[index='2'] {.dim(2)}
-  &[index='3'] {.dim(3)}
-  &[index='4'] {.dim(4)}
-  &[index='5'] {.dim(5)}
-  &.left {}
+  > *, div, section, article {
+    background: transparent !important;
+  }
+
+  // &[index='0'] {.dim(0)}
+  // &[index='1'] {.dim(1)}
+  // &[index='2'] {.dim(2)}
+  // &[index='3'] {.dim(3)}
+  // &[index='4'] {.dim(4)}
+  // &[index='5'] {.dim(5)}
+  // &.left {}
     // .spread(left); }
-  &.right { .spread(right) }
+  // &.right { .spread(right) }
   &.bottom:not(:empty),
   &.footer:not(:empty),
   &.panel-bottom:not(:empty),
@@ -165,10 +184,10 @@ status-bar {
     .spread(left, @n + 1) }
 
   &:nth-last-child(@{n})  {
-    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 1%);
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
     background-color: @tool-panel-background-color !important }
 
-  &:nth-child(@{n})  {
+  &:nth-of-type(@{n})  {
      z-index: @n }}
 
 
@@ -179,14 +198,14 @@ status-bar {
     .spread(right, @n + 1) }
 
   &:nth-of-type(@{n})  {
-    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 5%);
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
     background-color: @tool-panel-background-color !important }
 
   &:nth-last-child(@{n})  {
     z-index: @n }}
 
 .dim(@n) {
-  @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 5%);
+  @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
   background-color: @tool-panel-background-color !important;
   z-index: 10 - @n;
 }

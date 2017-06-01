@@ -6,6 +6,10 @@
 @tab-active-box-shadow: 0 0 2em fade(black, 15%);
 @tab-border-radius: 2px;
 @tab-offset-distance: 1px;
+@tab-bar-start-color: #4e407e;
+@tab-bar-mid-color:   #e861c6;
+@tab-bar-end-color:   #2dffb2;
+@tab-bar-final-color: #b6d984;
 
 .gradient(@start, @end: transparent) {
   background-image: linear-gradient(120deg, @start, @end) }
@@ -17,8 +21,11 @@
 
 .tab-bar[data-visible=false] {
   display: none !important }
+
 atom-dock.right .tab-bar {
-  background: transparent !important;
+  .gradient(mix(@tab-bar-end-color, @base-background-color, 25%), mix(@tab-bar-final-color, @base-background-color, 50%));
+  background-blend-mode: color-dodge;
+  // background: transparent !important;
   margin: 0 0 1px -4px;
 
   .tab {
@@ -29,38 +36,51 @@ atom-dock.left .tab-bar {
 
 
 @bg-bar: @tab-bar-background-color;
-@bg:     @tab-background-color, // Default
-         fade(lighten(@tab-background-color, 12%), 80%), // Hovered
-         fade(mix(@tab-background-color-active, @background-color-info, 50%), 75%), // Active
-         saturate(lighten(@tab-background-color-active, 25%), 18%), // Active hovered
-         fade(saturate(mix(@tab-background-color-active, @background-color-info, 25%), 25%), 75%), // Modified
-         mix(@tab-background-color-active, lighten(@text-color-info, 10%), 25%),  // Modified hovered
-         mix(@tab-background-color-active, saturate(@text-color-info, 10%), 25%);  // Modified active
 
+         // Default
+@bg:     @tab-background-color,
+
+         // Hovered
+         fade(lighten(@tab-background-color, 12%), 80%),
+
+         // Active
+         fade(saturate(mix(@tab-background-color-active, @background-color-info, 25%), 25%), 75%),
+
+         // Active hovered
+         mix(@tab-background-color-active, saturate(@text-color-info, 10%), 25%),
+
+         // Modified
+         saturate(lighten(@tab-background-color-active, 5%), 18%),
+
+         // Modified hovered
+         fade(mix(@tab-background-color-active, @background-color-info, 25%), 75%),
+
+         // Modified active
+         mix(@tab-background-color-active, lighten(@text-color-info, 10%), 25%),
+         transparent;
 .tab-bar {
 
-  .gradient3(#4e407e, #e861c6, #2dffb2);
+  .gradient3(@tab-bar-start-color, @tab-bar-mid-color, @tab-bar-end-color);
   // .gradient(@color-background, lighten(@color-background, 6%));
   --height:         @tab-height;
   height:           var(--height, @tab-height);
   line-height:      var(--height, @tab-height);
   background-color: @bg-bar;
   background-color: darken(@base-background-color, 1%);
-  border-radius:    0;
+  z-index:          10;
   border:           0 solid @tab-bar-border-color;
+  border-radius:    0;
   border-width:     0 !important;
   box-shadow:       0.2em 0.5em 1em rgba(0,0,0,0.05);
   border-left-color: @tab-border-color;
 
-  z-index: 10;
-
   .tab {
+    background-color: transparent;
     mix-blend-mode: lighten;
     transition: @transition-default, width @transition-duration, margin @transition-duration;
     margin:     0;
     border:     0 solid @tab-border-color;
     padding:    0 @component-padding / 2;
-    background-color: transparent;
     height:     inherit;
     border-width: 0 !important }
 
