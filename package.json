@@ -55,6 +55,13 @@
           "description": "Uncheck to disable docks' tab bars",
           "type": "boolean",
           "default": true
+        },
+        "coloredTabs": {
+          "order": 2,
+          "title": "Filled tabs coloring",
+          "description": "If enabled, tabs' states are displayed as fill colors. If disabled, a more subtle border coloring is used to display the state for tabs",
+          "type": "boolean",
+          "default": true
         }
       }
     },
