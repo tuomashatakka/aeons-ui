@@ -18,12 +18,14 @@ th, thead, .tooltip {
 body {
   padding: @workspace-padding;
   background-color: darken(@app-background-color, 4%);
+	overflow: initial;
   font-size: @font-size }
 
 atom-workspace {
   // border-radius: 40px;
   .scrollbar(@scrollbar-size, @scrollbar-color);
-  overflow: hidden;
+	overflow: initial;
+  // overflow: hidden;
 	padding-top: @workspace-header-border-width;
   background-color: @app-background-color;
 	box-shadow: @workspace-shadow }

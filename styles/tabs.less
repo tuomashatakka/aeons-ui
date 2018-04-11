@@ -2,41 +2,88 @@
 @import "./ui-variables";
 @modified: ~".modified:not(:hover)";
 @modified-hover: ~".modified:hover";
-@tab-hover-box-shadow: 0 0 1em fade(black, 5%);
+@tab-hover-box-shadow: 0 0 1em fade(black, 15%);
+@tab-active-box-shadow: 0 0 2em fade(black, 15%);
+@tab-border-radius: 2px;
+@tab-offset-distance: 1px;
+@tab-bar-start-color: #4e407e;
+@tab-bar-mid-color:   #e861c6;
+@tab-bar-end-color:   #2dffb2;
+@tab-bar-final-color: #b6d984;
 
 .gradient(@start, @end: transparent) {
-  background-image: linear-gradient(120deg, @start, @end)
-}
+  background-image: linear-gradient(120deg, @start, @end) }
 
+.gradient3(@start, @mid, @end: transparent) {
+  background-blend-mode: color-dodge;
+  background-image: linear-gradient(120deg, mix(@start, @tab-bar-background-color, 5%), mix(@mid, @base-background-color, 15%), mix(@end, @base-background-color, 25%)) }
+
+
+
+.tab-bar[data-visible=false] {
+  display: none !important }
+
+atom-dock.right .tab-bar {
+  .gradient(mix(@tab-bar-end-color, @base-background-color, 25%), mix(@tab-bar-final-color, @base-background-color, 50%));
+  background-blend-mode: color-dodge;
+  // background: transparent !important;
+  margin: 0 0 1px -4px;
+
+  .tab {
+    background: transparent !important } }
+
+atom-dock.left .tab-bar {
+  margin: 0 -4px 1px 0 }
+
+
+@bg-bar: @tab-bar-background-color;
+
+         // Default
+@bg:     @tab-background-color,
+
+         // Hovered
+         fade(lighten(@tab-background-color, 12%), 80%),
+
+         // Active
+         fade(mix(@tab-background-color-active, @text-color-info, 25%), 75% ),
+
+         // Active hovered
+         mix(@tab-background-color-active, saturate(@text-color-info, 10%), 25%),
+
+         // Modified
+         saturate(mix(lighten(@tab-background-color-active, 5%), @background-color-error, 50%), 18%),
+
+         // Modified hovered
+         fade(mix(@tab-background-color-active, @background-color-error, 25%), 75%),
+
+         // Modified active
+         mix(@tab-background-color-active, lighten(@text-color-error, 10%), 25%),
+         transparent;
 .tab-bar {
-  @bg-bar: @tab-bar-background-color;
-  @bg:
-    @tab-background-color, // Default
-    lighten(@tab-background-color, 6%), // Hovered
-    @tab-background-color-active, // Active
-    lighten(@tab-background-color-active, 10%), // Active hovered
-    @background-color-warning, // Modified
-    @text-color-warning;  // Modified hovered
 
+  .gradient3(@tab-bar-start-color, @tab-bar-mid-color, @tab-bar-end-color);
   // .gradient(@color-background, lighten(@color-background, 6%));
-  --height:        @tab-height;
-  height:          var(--height, @tab-height);
-  line-height:     var(--height, @tab-height);
+  --height:         @tab-height;
+  height:           var(--height, @tab-height);
+  line-height:      var(--height, @tab-height);
   background-color: @bg-bar;
-  border-radius:   0;
-  border:          0 solid @tab-bar-border-color;
-  border-width:    0 !important;
+  background-color: darken(@base-background-color, 1%);
+  z-index:          10;
+  border:           0 solid @tab-bar-border-color;
+  border-radius:    0;
+  border-width:     0 !important;
+  box-shadow:       0.2em 0.5em 1em rgba(0,0,0,0.05);
   border-left-color: @tab-border-color;
 
   .tab {
-    // mix-blend-mode: overlay;
+    background-color: transparent;
+    mix-blend-mode: lighten;
     transition: @transition-default, width @transition-duration, margin @transition-duration;
+    margin:     0;
     border:     0 solid @tab-border-color;
     padding:    0 @component-padding / 2;
-    background-color: extract(@bg, 1);
     height:     inherit;
-    margin: 0;
-    border-width: 0 }
+    border-width: 0 !important }
 
   .tab { .tab-icon }
   .tab,  .tab .close-icon {
@@ -47,6 +94,7 @@
   .tab .title {
     .type(tabs);
     font-size: @tab-font-size }
+
   .tab.active .title {
     .type(active) }
 
@@ -55,48 +103,58 @@
     font-size:      1em;
     color:          inherit;
     vertical-align: middle;
-    margin-top:    -3px }
+    display:        inline-block;
+    margin-top:    -1px }
+
+  .tab-state(@color) {
+    background-color: @color;
+    border-color: darken(@color, 3%);
+
+    &:hover {
+      background-color: lighten(@color, 8%);
+      border-color: lighten(@color, 6%) }
+
+    [tab-coloring=false] & {
+      background-color: transparent;
+      border-bottom: 2px solid lighten(@color, 25%) !important;
+      background-image: linear-gradient(175deg, transparent 30%, fade(@color, 15%) 80%);
+    }}
 
   // States
   .tab:hover,
   .tab.active {
-    margin-top: 2px;
-    border-radius: @component-border-radius;
+    z-index: 5;
+    margin-top: @tab-offset-distance;
+    border-radius: @tab-border-radius;
     color: @text-color-highlight }
 
-  // .tab.active::before {
-  //   content: "";
-  //   display: block;
-  //   position: absolute;
-  //   bottom: -4px;
-  //   right: 0;
-  //   border: 0 solid transparent;
-  //   border-top-color: extract(@bg, 3);
-  //   border-width: 4px 0 0 12px }
-
   .tab:hover {
-    z-index: 5;
     box-shadow: @tab-hover-box-shadow;
-    border-color: lighten(@tab-border-color, 5%);
-    background-color: extract(@bg, 2) }
+    .tab-state(extract(@bg, 2)) }
 
   .tab.active {
+    z-index: 1;
     flex-grow: 1;
-    border-color: lighten(@tab-border-color, 2%);
-    background-color: extract(@bg, 3) }
+    box-shadow: @tab-active-box-shadow;
+    .tab-state(extract(@bg, 3)) }
 
   .tab.active:hover {
-    background-color: extract(@bg, 4);
+  .tab-state(extract(@bg, 4));
     .tab-icon(hover) }
 
   // Close icon state overrides & transforms
   .tab@{modified} {
-    background-color: extract(@bg, 5);
+    .tab-state(extract(@bg, 5));
     .tab-icon(modified) }
 
   .tab@{modified-hover} {
-    background-color: extract(@bg, 6);
+    .tab-state(extract(@bg, 6));
     .tab-icon(hover) }
+
+  .tab.active.modified,
+  .tab.active.modified:hover {
+    .tab-state(extract(@bg, 7));
+    .tab-icon(modified) }
 
   // Close icon hover color
   .tab .close-icon:hover,
@@ -104,6 +162,10 @@
     background-color: @background-color-error;
     color: @text-color-error }
 }
+
+.list-inline {
+  .tab {
+  max-width: none }}
 
 // Helper mixin for tab icon states
 .tab-icon(@state: none) {
@@ -149,3 +211,14 @@
   .close-icon {
     background: lighten(@tab-background-color-active, 10%);
     color: @text-color-highlight }}
+
+
+// .tab.active::before {
+//   content: "";
+//   display: block;
+//   position: absolute;
+//   bottom: -4px;
+//   right: 0;
+//   border: 0 solid transparent;
+//   border-top-color: extract(@bg, 3);
+//   border-width: 4px 0 0 12px }

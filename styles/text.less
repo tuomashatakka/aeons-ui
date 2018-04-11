@@ -3,30 +3,40 @@
   @padding: @component-padding;
   &.icon::before {
     margin: 0 @padding 0 @padding / 3;
-    font-size: inherit;
+    font-size: 1.2em;
     line-height: inherit;
     height: auto;
     vertical-align: baseline }}
 
+table {
+  font-size: 1em !important
+}
+table th, table td {
+
+  padding: 0.75em 0.2em 0.75em 1em !important;
+  font-weight: 300;
+  font-size: 0.92em;
+}
 h1, h2, h3 {
   margin: @component-padding 0 }
+
 h1, h2, h3, .h1, .h2, .h3 {
   .heading }
 
-.heading {;
+.heading {
   line-height: 1em;
   .icon(adaptive);
   .type(heading) }
 
 h1 {
   .h1;
-  font-size: 2.4em !important }
+  font-size: 3.5em !important }
 
 h2,
 .settings-view section .section-heading,
 .settings-view .section .section-heading {
   .h2;
-  font-size: 2em !important;
+  font-size: 2.8em !important;
   font-weight: 500 !important }
 
 h3,
@@ -34,17 +44,16 @@ h3,
 .settings-view .sub-section .sub-section-heading,
 .settings-view .sub-section .sub-section-heading {
   .h3;
-  font-weight: 500 !important;
-  letter-spacing: 0.05em !important }
+  font-weight: 500 !important }
 
 h4,
 .settings-view .setting-title {
   .h3;
-  font-weight: 300 !important;
-  letter-spacing: 0.05em !important }
+  font-weight: 300 !important }
 
 .settings-view .setting-title {
-  font-size:    0.8em !important }
+  line-height: 1.5rem;
+  font-size:    1.4em !important }
 h4 {
   padding-right: 1em;
   font-size: 1.33em !important }
@@ -79,24 +88,29 @@ code {
 
 .selected { .text(highlight); }
 
-.text-smaller { font-size: 0.9em; }
+.text-smaller {
+  font-size: 0.9em; }
 
-.text-subtle { .text(subtle); }
-.text-highlight { .text(highlight); }
+.text-subtle {
+  .text(subtle); }
 
-.text-error { .text(error); }
+.text-highlight {
+  .text(highlight); }
+
+.text-error {
+  .text(error); }
+
 .text-info {
   .text(info);
-  &:hover { color: @text-color-info; }
-}
+  &:hover { color: @text-color-info; }}
+
 .text-warning {
   .text(warning);
-  &:hover { color: @text-color-warning; }
-}
+  &:hover { color: @text-color-warning; }}
+
 .text-success {
   .text(success);
-  &:hover { color: @text-color-success; }
-}
+  &:hover { color: @text-color-success; }}
 
 .highlight {
   color: @text-color-highlight;

@@ -4,3 +4,33 @@
 .status-modified { .text(warning); }
 .status-removed { .text(error); }
 .status-renamed { .text(info); }
+
+
+
+.icon[class*=status]::before {
+  -webkit-mask-image: var(--svg, url(~"@{assets-uri}/icons/alice.box.svg"));
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 80%;
+  background-color: var(--color, white);
+  content: "" !important;
+}
+.status-added {
+  --svg:  url(~"@{assets-uri}/icons/alice.arrow.svg");
+  --color: @text-color-success }
+
+.status-ignored {
+  --svg:  url(~"@{assets-uri}/icons/alice.shield.svg");
+  --color: @text-color-subtle }
+
+.status-modified {
+  --svg:  url(~"@{assets-uri}/icons/alice.bullet.svg");
+  --color: @text-color-modified }
+
+.status-removed {
+  --svg:  url(~"@{assets-uri}/icons/alice.slash.svg");
+  --color: @text-color-removed }
+
+.status-renamed {
+  --svg:  url(~"@{assets-uri}/icons/alice.arrow.dash.svg");
+  --color: @text-color-renamed }

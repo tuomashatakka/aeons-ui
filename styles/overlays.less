@@ -1,9 +1,4 @@
 
-@backdrop-blur:      3px;
-@backdrop-fade-in:   1s;
-@backdrop-fade-out:  300ms;
-@overlay-width:      880px;
-@overlay-box-shadow: 0 0 10px fade(black, 15%);
 
 atom-workspace-axis.horizontal,
 atom-panel-container.header,
@@ -31,8 +26,14 @@ atom-panel.modal,
   margin:        0;
   transform:     translateX(-50%);
 
+  &.from-top {
+    top:         6vh;
+  }
+
   atom-text-editor[mini] {
     .octicon(chevron-right);
+    .type(overlay-input);
+
     &::before {
       font-size: inherit;
       vertical-align: middle;
@@ -40,9 +41,9 @@ atom-panel.modal,
       line-height: inherit;
       padding-right: 1rem;
       color: mix(@overlay-background-color, @text-color, 85%) }
-    .type(overlay-input);
-    margin-bottom:  0;
-    padding:        0 @component-padding @component-padding !important;
+
+    margin-bottom:  @component-padding;
+    padding:        0 @component-padding !important;
     max-height:     none !important;
     height:         auto !important;
     border:         none;
@@ -53,36 +54,44 @@ atom-panel.modal,
   &.select-list {
     padding: 0 }
 
-  .select-list,
-  &.select-list {
-
-  }
   .select-list ol.list-group,
   &.select-list ol.list-group {
 
-    border-top: 1px solid mix(@overlay-background-color, @overlay-border-color, 90%) !important;
-    border-width:  0;
-    margin: 0 -@component-padding -@component-padding;
-    background-color: mix(@overlay-background-color, @overlay-border-color, 90%);
+    // border-top: 1px solid mix(@overlay-background-color, @overlay-border-color, 90%) !important;
+    background-color: mix(@overlay-background-color, @overlay-border-color, 75%);
+    border-width: 0;
+    margin:       0 -@component-padding -@component-padding;
     max-height: 70vh;
 
     li {
+      .type(tabs);
       color: @text-color-subtle;
-      padding: @component-padding;
-      border-bottom: 0px solid @overlay-background-color;
-
-      &.two-lines {
-        padding: @component-padding/2 @component-padding; }
+      padding: @component-padding / 3 @component-padding;
+      border-bottom: 1px solid @overlay-background-color;
+      transition: @transition-default;
 
       .status.icon {
         float: right;
         margin-left: @component-icon-padding;
 
         &:before {
+          height:       2.8rem;
+          width:        1.4rem;
+          color:        inherit !important;
           margin-right: 0 }}
 
-      &.selected {
-        color: @text-color-selected;
+      &:hover {
+        background-color: mix(@background-color-selected, @overlay-background-color);
+        color: mix(@text-color-selected, @text-color-subtle) }
 
-        .status.icon {
-          color: inherit }}}}}
+      &.selected {
+        color: @text-color-selected }}
+
+    li.two-lines {
+      padding: @component-padding/2 @component-padding;
+
+      .primary-line,
+      .secondary-line {}
+    }
+
+}}

@@ -1,6 +1,6 @@
 {
-  "name": "raven-ui",
-  "version": "0.0.0",
+  "name": "aeons-ui",
+  "version": "0.0.10",
   "main": "./lib/index",
   "theme": "ui",
   "author": {
@@ -8,7 +8,7 @@
     "email": "tuomas.hatakka@gmail.com"
   },
   "bugs": {
-    "url": "https://github.com/tuomashatakka/icaros-ui/issues"
+    "url": "https://github.com/tuomashatakka/aeons-ui/issues"
   },
   "dependencies": {
     "etch": "^0.10.0"
@@ -18,7 +18,7 @@
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
   },
-  "homepage": "https://github.com/tuomashatakka/icaros-ui",
+  "homepage": "https://github.com/tuomashatakka/aeons-ui",
   "keywords": [
     "dark",
     "clean",
@@ -43,6 +43,28 @@
     "ui"
   ],
   "configSchema": {
+    "display": {
+      "order": 2,
+      "title": "Display",
+      "description": "Hide unnecessary clutter",
+      "type": "object",
+      "properties": {
+        "dockTabs": {
+          "order": 1,
+          "title": "Show all tab bars",
+          "description": "Uncheck to disable docks' tab bars",
+          "type": "boolean",
+          "default": true
+        },
+        "coloredTabs": {
+          "order": 2,
+          "title": "Filled tabs coloring",
+          "description": "If enabled, tabs' states are displayed as fill colors. If disabled, a more subtle border coloring is used to display the state for tabs",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
     "layout": {
       "order": 1,
       "title": "Size & layout",
@@ -208,5 +230,5 @@
   "optionalDependencies": {},
   "readmeFilename": "README.md",
   "license": "MIT",
-  "repository": "https://github.com/tuomashatakka/icaros-ui"
+  "repository": "https://github.com/tuomashatakka/aeons-ui"
 }

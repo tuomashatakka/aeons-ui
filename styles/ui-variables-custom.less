@@ -1,4 +1,6 @@
 
+@assets-uri: "atom://aeons-ui/assets";
+
 // Main colors
 // @color-foreground:  #ede9f0;
 // @color-background:  #0d0a11;
@@ -18,12 +20,12 @@
   #deaa93 100vw);
 
 
-@color-base:        #dedfd7, #b1a4b9, #edeaf0, #282833, #25202f;
+@color-base:        #dedfd7, #b1a4b9, #edeaf0, #282833, #22222b;
 @color-highlight:   #37bcfe, #1feda8, #ed4581, #f6599b, #80eb5a;
 
 @color-reds:        #b84a6e, #fe3e69, #f22166, #fe0f64, #7a1f43, #ee207d;
 @color-blues:       #0053cf, #2168f2, #2d97fa, #5d7ebd, #7098bb;
-@color-state:       #0053cf, #21f2b2, #bb6dbf, #f22166;
+@color-state:       #5bb6f5, #21f2b2, #deaa93, #f22166;
 @color-state-muted: #736194, #61bda1, #5d7ebd, #b84a6e;
 @color-state-vivid: #8586ff, #29ffbe, #adf983, #ff185e;
 
@@ -47,6 +49,7 @@
 @workspace-shadow:              0 0 2em rgba(0, 0, 0, 0.1);
 @workspace-header-border-width: 1px;
 @workspace-header-gradient:     #5621f3 0%, #1f8ceb 10%, #0cf289 33%, #deaa93 100%;
+@overlay-box-shadow:            0 0 10px fade(black, 15%);
 
 @ui-size:                       16px;
 @font-weight:                   300;
@@ -55,11 +58,14 @@
 @notification-icon-size:        2rem;
 @scrollbar-size:                8px;
 @scrollbar-gutter:              0px;
-
-@tab-font-size:                 @font-size * 0.75;
-@list-font-size:                @font-size * 0.88;
+@backdrop-blur:                 3px;
+@backdrop-fade-in:              1s;
+@backdrop-fade-out:             300ms;
+@overlay-width:                 480px;
+@tab-font-size:                 @font-size * 0.95;
+@list-font-size:                @font-size * 0.95;
 @status-bar-height:             @component-padding * 2.5;
-@status-bar-gutter:             @component-padding * 0.75;
+@status-bar-gutter:             @component-padding * 0.25;
 @component-border-radius-round: @component-padding * 2;
 
 @transition-duration:           250ms;

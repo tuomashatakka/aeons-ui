@@ -1,19 +1,56 @@
 @import "buttons.less";
-@max-iter: 8;
+@max-iter:      8;
+@handle-size:   0.8rem;
+@spread-factor: 0.5%;
 
 .panel {
 }
 
+
+// Brand new & shiny docks!
+// Well played, atom.io developers, well played...
+
+atom-dock {
+  position: relative;
+
+  .atom-dock-resize-handle {
+    position: absolute;
+    z-index: 10;
+
+    &.left { right: -@handle-size / 2 }
+    &.right { left: -@handle-size / 2 }
+    &.left,
+    &.right {
+      top: 0;
+      bottom: 0;
+      width: @handle-size }
+
+    &.top { bottom: -@handle-size / 2 }
+    &.bottom { top: -@handle-size / 2 }
+    &.top,
+    &.bottom {
+      left: 0;
+      right: 0;
+      height: @handle-size }}
+
+  atom-pane-container,
+  atom-pane,
+  .tab-bar,
+  .tab {
+    // background: transparent;
+    box-shadow: none }}
+
+
+// Traditional panels
 atom-panel-container.left,
 atom-panel-container.right {
+  background-color: @panel-background-color;
   border-color: @tool-panel-border-color;
   border-width: 0;
   border-style: solid;
-  overflow-y:   hidden;
-  overflow:     initial;
+
   atom-panel {
-    box-shadow: @tool-panel-box-shadow }
-}
+    box-shadow: @tool-panel-box-shadow }}
 
 // atom-panel-container.right { border-left-width: @tool-panel-outline-size }
 // atom-panel-container.left { border-right-width: @tool-panel-outline-size }
@@ -30,19 +67,24 @@ atom-panel,
   .text(normal);
   background-color: @panel-background-color;
   border-color:     @tool-panel-border-color;
+  background-color: @app-background-color !important;
   position:         relative;
   border-style:     solid;
   border-width:     0;
 
-  &[index='0'] {.dim(0)}
-  &[index='1'] {.dim(1)}
-  &[index='2'] {.dim(2)}
-  &[index='3'] {.dim(3)}
-  &[index='4'] {.dim(4)}
-  &[index='5'] {.dim(5)}
-  &.left {}
+  > *, div, section, article {
+    background: transparent !important;
+  }
+
+  // &[index='0'] {.dim(0)}
+  // &[index='1'] {.dim(1)}
+  // &[index='2'] {.dim(2)}
+  // &[index='3'] {.dim(3)}
+  // &[index='4'] {.dim(4)}
+  // &[index='5'] {.dim(5)}
+  // &.left {}
     // .spread(left); }
-  &.right { .spread(right) }
+  // &.right { .spread(right) }
   &.bottom:not(:empty),
   &.footer:not(:empty),
   &.panel-bottom:not(:empty),
@@ -50,20 +92,26 @@ atom-panel,
     border-top-width: 0 }}
 
 status-bar {
-  @height:      @status-bar-height - @status-bar-gutter;
+  @height: @status-bar-height - @status-bar-gutter;
   line-height:  var(--height, @status-bar-height);
   min-height:   var(--height, @status-bar-height);
 
   svg {
     height: auto !important }
+
   > * {
     display:        inherit; }
+
+  .status-bar-left {
+    justify-content: flex-start }
+
+  .status-bar-right {
+    justify-content: flex-end }
 
   .status-bar-left,
   .status-bar-right {
     vertical-align: middle;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     padding: 0 }
 
@@ -98,11 +146,11 @@ status-bar {
   .status-bar-left > .inline-block {
     margin-right: 0;
     margin-left: @status-bar-gutter }
+
   .status-bar-right > * ,
   .status-bar-right > .inline-block {
     margin-left: 0;
-    margin-right: @status-bar-gutter }
-}
+    margin-right: @status-bar-gutter }}
 
 .tool-bar {
   border: none }
@@ -110,12 +158,6 @@ status-bar {
 .inset-panel {
   position:         relative;
   background-color: @inset-panel-background-color }
-
-.is-blurred {
-  atom-panel,
-  .inset-panel {
-  }
-}
 
 .panel-heading {
 
@@ -142,10 +184,10 @@ status-bar {
     .spread(left, @n + 1) }
 
   &:nth-last-child(@{n})  {
-    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 1%);
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
     background-color: @tool-panel-background-color !important }
 
-  &:nth-child(@{n})  {
+  &:nth-of-type(@{n})  {
      z-index: @n }}
 
 
@@ -156,14 +198,14 @@ status-bar {
     .spread(right, @n + 1) }
 
   &:nth-of-type(@{n})  {
-    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 5%);
+    @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
     background-color: @tool-panel-background-color !important }
 
   &:nth-last-child(@{n})  {
     z-index: @n }}
 
 .dim(@n) {
-  @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * 5%);
+  @tool-panel-background-color: darken(@panel-background-color, (@n - 1) * @spread-factor);
   background-color: @tool-panel-background-color !important;
   z-index: 10 - @n;
 }
