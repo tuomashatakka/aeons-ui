@@ -1,0 +1,72 @@
+
+@input-height: @component-height;
+
+.height(@default: inherit) {
+  box-sizing:  border-box;
+  font-family: inherit;
+  line-height: var(--height, @default) !important;
+  height:      var(--height, @default) !important;
+}
+
+input,
+atom-text-editor[mini],
+atom-text-editor.mini {
+  overflow-y: hidden }
+
+input,
+select,
+atom-text-editor[mini],
+atom-text-editor.mini,
+.form-control {
+  --height: @input-height;
+  border-radius: @component-border-radius;
+  padding: 0 @component-height/3;
+  color: @text-color;
+
+  .height(@input-height);
+  .input(focus, @input-background-color);
+  .interactions(@input-background-color);
+}
+
+input[type="checkbox"] {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin: 0 0 0 -2rem !important;
+  min-width: 0 !important;
+  display: block !important;
+  padding: 0px;
+
+  &.input-checkbox:checked {
+    background-color: @background-color-info }
+
+  &.input-checkbox:checked::after,
+  &.input-checkbox:checked::before {
+    background: @text-color-info;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    width: 50%;
+    height: 1px;
+    margin: 0.4px;
+  }
+  &.input-checkbox:checked::before {
+    transform: rotate(-45deg) translate(-50%, -50%) !important;
+  }
+
+  &.input-checkbox:checked::after {
+    transform: rotate(45deg) translate(-50%, -50%) !important;
+  }}
+
+.settings-view .section-heading
+  ~ [class*='container']
+  > atom-text-editor.mini {
+  --height:  2em;
+  font-size: 2em;
+}
+
+[override-editor-background=true] atom-text-editor:not(.mini) {
+  &, >*, .lines, .lines > *, .lines > * > * {
+    background-color: @panel-background-color;
+    background-color: transparent
+}}

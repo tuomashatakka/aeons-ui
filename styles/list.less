@@ -1,0 +1,129 @@
+
+@indent: 0.85rem;
+@list-item-height: 1.5rem;
+
+
+.icon {
+  display: inline-block }
+
+
+.list-item,
+.list-nested-item,
+.list-group,
+.list-tree {
+  line-height: @list-item-height !important;
+  margin: 0 !important;
+  padding: 0 !important }
+
+.list-nested-item {
+  position: relative;
+  padding: 0 0 0 @indent !important }
+
+
+// Folds
+
+.header.list-item::before {
+  content: "\f078" !important;
+  top: 0 !important;
+  left: -@list-item-height !important;
+  height: @list-item-height !important;
+  width: @list-item-height !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  margin: 0 !important;
+  font-size: 1em !important;
+  display: block !important;
+  line-height: @list-item-height !important;
+  transition: .3s transform;
+  position: absolute !important;
+}
+
+.expanded > .header.list-item::before {
+  transform: rotate(90deg)}
+
+
+li.list-item {
+  padding: 0 0 0 @indent !important }
+
+.list-item {
+  .interactions(@tab-background-color) }
+
+.list-item.selected::before {
+  height: @list-item-height !important }
+
+.project-root-header {
+  font-size: 2em;
+  padding:   1rem 0.5rem !important }
+
+.header.project-root-header::before {
+  top: 1rem !important;
+  left: -1rem !important }
+
+.project-root > ol {
+  padding: 0 !important }
+
+.tree-view span.name {
+  display: block;
+  line-height: inherit;
+  top: 1px;
+}
+
+.select-list ol.list-group li {
+  line-height: @list-item-height * 1.6;
+
+  &.two-lines {
+    line-height: @list-item-height * 0.8;
+
+    .status {
+      position: absolute }
+
+    .secondary-line {
+      color: @text-color-subtle }
+
+    .primary-line,
+    .secondary-line {
+      padding: 0 @component-padding 0 @list-item-height * 1.6;
+      height:  auto;
+      display: block;
+      line-height: inherit }}}
+
+
+.overlay {
+
+  &.select-list,
+  .select-list {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .list-group {
+      height: auto;
+      max-height: none;
+      flex: 0 1 100% }
+   }
+
+
+  ol.list-group li {
+    height: @list-item-height * 1.6;
+    line-height: @list-item-height * 1.6;
+
+    &.selected::before {
+      height: inherit !important }
+
+    .interactions(@overlay-background-color);
+
+    > span {
+      padding:     0 @component-padding;
+      display:     inline-block;
+      height:      inherit;
+      line-height: inherit;
+    }
+
+    .pull-right {
+      height: inherit;
+      margin: 0 @component-padding;
+    }
+
+
+  }
+}

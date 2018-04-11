@@ -3,7 +3,7 @@
 import createPanel from './settings-panel.js'
 import os from 'path'
 
-const PACKAGE_NAME = 'aeons-ui'
+const PACKAGE_NAME = 'phase-mod-ui'
 const title = (text) => text
     .replace(/([\s\-]+)/, ' ')
     .split(' ')

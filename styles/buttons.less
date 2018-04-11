@@ -1,112 +1,58 @@
 
-@icon-size: 12px;
+@size-lg: 1.5;
+@size-sm: 0.9;
+@size-xs: 0.75;
+@component-size-lg: @input-height * @size-lg;
+@component-size-md: @input-height;
+@component-size-sm: @input-height * @size-sm;
+@component-size-xs: @input-height * @size-xs;
 
-.button(@bg, @color, @hover, @selected) {
-
-  @text-hover:          mix(@color, @hover);
-  @background-hover:    lighten(mix(@bg, @hover), 4%);
-  @text-selected:       mix(@color, @selected);
-  @background-selected: mix(@bg, @selected);
-  @text-selected-hover:      lighten(@text-selected, 20%);
-  @background-selected-hover: lighten(@background-selected, 10%);
-
-  border-color:   darken(@bg, 5%) !important;
-  color:          @color;
-  background:     @bg;
-
-  &:focus {
-    outline: none;
-    color: darken(@color, 5%);
-    border-color: darken(@bg, 8%);
-    background: darken(@bg, 2%) }
-  &:hover {
-    color: @text-hover;
-    border-color: darken(@background-hover, 8%);
-    background: @background-hover }
-  &.selected {
-    color: @text-selected;
-    border-color: darken(@background-selected, 8%);
-    background: @background-selected }
-  &.selected:hover {
-    color: @text-selected-hover;
-    border-color: darken(@background-selected-hover, 8%);
-    background: @background-selected-hover }}
-
-.btn.btn-default {
-  .button-state(normal,  lighten(@text-color, 5%), @button-background-color) }
-.btn.btn-info {
-  .button-state(info, @text-color-info, @background-color-info) }
-.btn.btn-success {
-  .button-state(success, @text-color-success, @background-color-success) }
-.btn.btn-warning {
-  .button-state(warning, @text-color-warning, @background-color-warning) }
-.btn.btn-error {
-  .button-state(error, @text-color-error, @background-color-error) }
-.btn.btn-fatal {
-  .button-state(fatal @text-color-error, @background-color-error) }
-
-.button-state (@state, @text: @text-color, @background: @button-background-color) {
-  @hover:    mix(@background, @button-background-color-hover, 25%);
-  @selected: mix(@background, @button-background-color-selected, 25%);
-  .button(@background, @text, @hover, @selected) }
-
-
-// Main button definitions
 .btn {
-  .type(button);
-  text-transform: uppercase;
-  .button(@button-background-color, @text-color, @button-background-color-hover, @button-background-color-selected);
-  @size:        @component-line-height * 1rem + @padding;
-  @padding:     @component-padding * 0.5;
+  --height: @component-size-md;
+  .height(@component-size-md);
+  .interactions(color, @text-color);
+  .interactions(background, @input-background-color);
+  font-weight: 300;
+  padding-top: 0;
+  padding-bottom: 0;
 
-  padding:      @padding @padding * 2;
-  line-height:  inherit;
-  height:       auto;
-  margin:       0;
-  box-sizing:   content-box;
-  display:      inline-block;
+
+  // Button sizes
+
+  &[class*='-lg'], [class*='-lg'] & {
+    --height: @component-size-lg;
+    font-size: @size-lg * @font-size;
+    font-weight: 200 }
+
+  &[class*='-sm'], [class*='-sm'] & {
+    font-weight: 400;
+    --height: @component-size-sm }
+
+  &[class*='-xs'], [class*='-xs'] & {
+    font-weight: 500;
+    font-size: @size-xs * @font-size;
+    --height: @component-size-xs }}
+
+
+// Button state colors
+
+.btn-primary {
+  .interactions(color, @text-color-highlight);
+  .interactions(background, @background-color-highlight);
 }
-
-.btn.icon::before {
-  vertical-align: middle;
-  margin-top: -2px }
-
-
-.caret {
-  border-top: @icon-size solid #fff;
-  margin-top: -1px }
-
-button { .btn }
-
-.btn-toolbar,
-.btn-group {
-  display: flex;
-
-  .btn {
-    flex:    1 1 auto;
-    margin:  0;
-    padding: @component-padding * 0.5
-             @component-padding * 0.8;
-  }
+.btn-info {
+  .interactions(color, @text-color-info);
+  .interactions(background, @background-color-info);
 }
-
-.btn-group,
-.btn-toolbar,
-.btn-toolbar > .btn,
-.btn-toolbar > .btn-group {
-  margin: 0 @component-padding / 2 0 0 }
-
-.btn-toolbar {
-  vertical-align:  middle;
-  justify-content: center;
-  align-items:     center;
-  text-align:      center }
-
-.btn-xs, .btn-group-xs .btn {
-  font-size: 6px;
-  font-weight: 600 }
-.btn-sm, .btn-group-sm .btn {
-  font-size: 12px; }
-.btn-lg, .btn-group-lg .btn {
-  font-size: 24px;
-  font-weight: 200 }
+.btn-success {
+  .interactions(color, @text-color-success);
+  .interactions(background, @background-color-success);
+}
+.btn-warning {
+  .interactions(color, @text-color-warning);
+  .interactions(background, @background-color-warning);
+}
+.btn-error {
+  .interactions(color, @text-color-error);
+  .interactions(background, @background-color-error);
+}

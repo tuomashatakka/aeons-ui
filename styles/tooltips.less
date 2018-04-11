@@ -1,61 +1,13 @@
 
-
-
-@tip-background-color: @color-black;
-@tip-text-color: @color-white;
 .tooltip {
-
-  padding: 0 !important;
-  margin: @disclosure-arrow-size;
-  background: @tip-background-color;
-  color: @tip-text-color;
-  border-radius: 1px;
-  box-shadow: @tab-hover-box-shadow;
-  white-space: nowrap;
-  transition: @transition-default, opacity .3s;
-
-  .keystroke {
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: #777;
-    padding-left: 2px }
-
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  transition: .15s opacity;
   &.in {
-    opacity: 1; }
-
+    opacity: 1;
+  }
   .tooltip-inner {
-    line-height: 19px;
-    padding: @component-padding / 2 @component-padding / 2;
-    border-radius: @component-border-radius;
-    background: transparent;
-    color: inherit;
-    white-space: nowrap;
-    max-width: none }}
-
-.tooltip-arrow {
-  @col: @tip-background-color;
-  @size: @disclosure-arrow-size;
-  position: absolute;
-  top: auto;
-  left: auto;
-
-  .tooltip[class*=top] & {
-    top: 100%;
-    border-width: @size @size 0;
-    border-top-color: @col }
-
-  .tooltip[class*=left] & {
-    left: 100%;
-    border-width: @size 0 @size @size;
-    border-left-color: @col }
-
-  .tooltip[class*=right] & {
-    left: -@disclosure-arrow-size;
-    border-width: @size @size @size 0;
-    border-right-color: @col }
-
-  .tooltip[class*=bottom] & {
-    top: -@disclosure-arrow-size;
-    border-width: 0 @size @size;
-    border-bottom-color: @col }
+    padding: @component-padding / 2 @component-padding;
+  }
 }

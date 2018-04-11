@@ -1,65 +1,78 @@
 
-@import 'ui-variables-custom';
+@globalTint:       #000000;
+@import            "user.less";
+@tint: @globalTint / 8;
+
+@color-main:       screen(#e8e9ea, @tint);
+@color-background: screen(#222022, @tint);
+@color-selected:   screen(#fafcfd, @tint);
+@color-highlight:  #2dff81, #5797f6, #be67f9, #fcbd7d, #f22a7a;
+@color-info:       screen(#5797f6, @tint);
+@color-success:    screen(#2dff81, @tint); //#52eb7d;
+@color-warning:    screen(#fcbd7d, @tint);
+@color-error:      screen(#f41e45, @tint);
 
 // Text
-@text-color:            @color-foreground;
-@text-color-subtle:     fadeout(@text-color, 40%);
-@text-color-highlight:  lighten(@text-color, 20%);
+@text-color:            @color-main;
+
+@text-color-subtle:     mix(@text-color, @color-background);
+@text-color-highlight:  lighten(@color-selected, 5%);
 @text-color-selected:   @color-selected;
 @text-color-active:     @color-selected;
 
-@text-color-info:       saturate(lighten(@color-info, 5%), 5%);
-@text-color-success:    saturate(lighten(@color-success, 5%), 5%);
+@text-color-info:       saturate(lighten(@color-info, 15%), 10%);
+@text-color-success:    saturate(lighten(@color-success, 15%), 15%);
+@text-color-warning:    saturate(lighten(@color-warning, 15%), 25%);
+@text-color-error:      desaturate(lighten(@color-error, 15%), 20%);
+
+@text-color-modified:   @color-info;
 @text-color-added:      @color-success;
-
-@text-color-warning:    saturate(lighten(@color-warning, 5%), 25%);
-@text-color-modified:   saturate(lighten(@color-warning, 2.5%), 5%);
 @text-color-renamed:    @color-warning;
-
-@text-color-error:      desaturate(lighten(@color-error, 8%), 20%);
 @text-color-removed:    @color-error;
 
 // Backgroundno
-@background-color-info:             desaturate(darken(@color-info, 15%), 5%);
-@background-color-success:          desaturate(darken(@color-success, 14%), 6%);
-@background-color-warning:          desaturate(darken(@color-warning, 15%), 25%);
-@background-color-error:            saturate(darken(@color-error, 8%), 25%);
-@background-color-highlight:        lighten(@base-background-color, 4%);
-@background-color-selected:         lighten(@base-background-color, 8%);
+@background-color-info:             saturate(darken(@color-info, 5%), 15%);
+@background-color-success:          desaturate(darken(@color-success, 20%), 6%);
+@background-color-warning:          desaturate(darken(@color-warning, 25%), 25%);
+@background-color-error:            saturate(darken(@color-error, 10%), 25%);
+
+@background-color-highlight:        mix(@base-background-color, @background-color-info, 75%);
+@background-color-selected:         lighten(@base-background-color, 2%);
 
 // Base
-@app-background-color:              darken(@color-background, 1.5%);
+@app-background-color:              @color-background;
 @base-background-color:             @color-background;
-@base-border-color:                 darken(@color-background, 3%);
+@base-border-color:                 @color-background; // darken(@color-background, 3%);
 
 // Components
-@pane-item-background-color:        @color-background;
-@panel-background-color:            darken(@color-background, 5%);
-@tool-panel-background-color:       darken(@color-background, 5%);
-@panel-heading-background-color:    @tool-panel-background-color;
-@inset-panel-background-color:      @tool-panel-background-color;
-@tree-view-background-color:        @color-background;
-@overlay-background-color:          @color-background;
-@button-background-color-selected:  @color-background;
-@button-background-color-hover:     lighten(@button-background-color, 2%);
-@button-background-color:           lighten(@color-background, 5%);
-@input-background-color-focus:      lighten(@panel-background-color, 10%);
-@input-background-color:            lighten(@panel-background-color, 6%);
+@panel-background-color:            darken(@color-background, 0.8%);
+@pane-item-background-color:        @panel-background-color;
+@tool-panel-background-color:       @panel-background-color;
+@panel-heading-background-color:    @panel-background-color;
+@inset-panel-background-color:      @panel-background-color;
+@tree-view-background-color:        @panel-background-color;
+@overlay-background-color:          @panel-background-color;
+@tab-bar-background-color:          @panel-background-color;
+@tab-background-color:              @panel-background-color;
+@tab-background-color-active:       @panel-background-color;
+
+@button-background-color:           lighten(@panel-background-color, 3%);
+@button-background-color-selected:  lighten(@panel-background-color, 6%);
+@button-background-color-hover:     lighten(@panel-background-color, 8%);
+
+@input-background-color:            lighten(@panel-background-color, 3%);
+@input-background-color-focus:      lighten(@panel-background-color, 8%);
 
 @panel-heading-border-color:        @base-border-color;
 @pane-item-border-color:            @base-border-color;
 @tool-panel-border-color:           @base-border-color;
-@tree-view-border-color:            @tool-panel-border-color;
-@inset-panel-border-color:          fadeout(@base-border-color, 15%);
+@tree-view-border-color:            @base-border-color;
+@inset-panel-border-color:          @base-border-color;
 @overlay-border-color:              @base-border-color;
 @input-border-color:                @base-border-color;
 @button-border-color:               @base-border-color;
-
-@tab-background-color:              @panel-background-color;
-@tab-bar-background-color:          @tab-background-color;
-@tab-background-color-active:       lighten(@color-background, 8%);
-@tab-border-color:                  darken(@tab-background-color, 2%);
-@tab-bar-border-color:              transparent;
+@tab-border-color:                  @base-border-color;
+@tab-bar-border-color:              @base-border-color;
 
 @ui-site-color-1:                   extract(@color-highlight, 1);
 @ui-site-color-2:                   extract(@color-highlight, 2);
@@ -67,20 +80,24 @@
 @ui-site-color-4:                   extract(@color-highlight, 4);
 @ui-site-color-5:                   extract(@color-highlight, 5);
 
-@scrollbar-color:                   @color-foreground;
+@scrollbar-color:                   @panel-background-color;
 @scrollbar-color-editor:            @panel-background-color;
-@scrollbar-background-color:        @panel-background-color;
+@scrollbar-background-color:        transparent;
 @scrollbar-background-color-editor: transparent;
 
 // Sizes
 @font-size:               1em;
 @input-font-size:         1em;
 @disclosure-arrow-size:   1rem;
-@component-padding:       1.33rem;
+
 @component-icon-padding:  0.5rem;
-@component-icon-size:     14px;
-@component-line-height:   1.7685;
-@component-border-radius: 1.5px;
+@component-icon-size:     3em;
+
+@component-padding:       0.65rem;
+@component-height:        2rem;
+@component-line-height:   1.75em;
+@component-border-radius: 2px;
+
 @tab-height:              3rem;
 
 // Font
@@ -89,12 +106,12 @@
               "Raleway",
               "Quicksand",
               "Questrial",
-              "Avenir",
+              "Avenir Next",
               "Helvetica Neue",
-              Roboto,
+              "Roboto",
               'BlinkMacSystemFont',
               'Segoe UI',
               'Lucida Grande',
-              Ubuntu,
-              Cantarell,
-              sans-serif;
+              "Ubuntu",
+              "Cantarell",
+              "sans-serif";

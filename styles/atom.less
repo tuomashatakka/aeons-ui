@@ -1,73 +1,60 @@
-@workspace-shadow: 0 0 2em hsla(0, 0, 0, 0.1);
-@workspace-padding: 1em;
-
-* {
-	box-sizing: border-box;
-}
-
-html {
-  font-size: @ui-size }
-
-table, thead, tbody, th, td, tr {
-  border: none }
-
-th, thead, .tooltip {
-  color: @text-color-subtle;
-  background-color: @base-border-color }
 
 body {
-  padding: @workspace-padding;
-  background-color: darken(@app-background-color, 4%);
-	overflow: initial;
-  font-size: @font-size }
+  font-family: @font-family;
+  font-size: 16px }
 
-atom-workspace {
-  // border-radius: 40px;
-  .scrollbar(@scrollbar-size, @scrollbar-color);
-	overflow: initial;
-  // overflow: hidden;
-	padding-top: @workspace-header-border-width;
-  background-color: @app-background-color;
-	box-shadow: @workspace-shadow }
+status-bar {
+  height: 2rem;
+  line-height: 2rem }
 
-atom-text-editor {
-	@corner-radius: 6px;
+atom-panel-container {
+  .custom-title-bar &.header {
+    overflow: hidden;
+    height: 0 }}
 
-	&:not(.mini) .highlights {
-		.highlight.find-result .region,
-		.highlight.current-result .region {
-			background-clip: content-box;
-			padding: 				 1px 0 0;
-			background: 		 @text-color-info }
+atom-panel.modal.overlay {
+  padding: 0;
+  height: 65vh;
 
-		.highlight.selection .region,
-		.highlight.find-result .region,
-		.highlight.current-result .region {
-			mix-blend-mode: screen;
-			border-radius:  @corner-radius;
-			border-width:   0;
-			opacity:        0.75;
-			&:hover { opacity: 1; }
-			z-index: 			 -1 }
-    .highlights .region[style*="left: 0"] {
-		  border-radius: 0 @corner-radius @corner-radius 0 !important }
-	  .region[style*="right: 0"] {
-		  border-radius: @corner-radius 0 0 @corner-radius !important }}}
+  ol {
+    height: 100%;
+  }
 
-.scrollbars-visible-always {
-	.scrollbar(@scrollbar-size, @scrollbar-color) }
+  atom-text-editor[mini] {
+    margin: 0;
+    font-weight: 100;
+    font-size: 3em;
+    height: 2.5em !important;
+    line-height: 2.5em !important;
+    }}
 
-atom-text-editor,
-.scrollbars-visible-always atom-text-editor {
-	.scrollbar(@scrollbar-size, desaturate(darken(@scrollbar-color, 25%), 5%));
-  ::-webkit-scrollbar-thumb { background: @scrollbar-color }}
+.atom-dock-resize-handle {
+  position: absolute;
+  z-index: 1999;
 
-.scrollbar(@size, @handle-color, @background-color: transparent, @corner-radius: 4px) {
-  ::-webkit-scrollbar {
-    width:  @size;
-    height: @size }
-  ::-webkit-scrollbar-track,
-  ::-webkit-scrollbar-corner {
-    background:    @background-color }
-  ::-webkit-scrollbar-thumb {
-    border-radius: @corner-radius }}
+  &.left, &.right {
+    height: 100% }
+
+  &.bottom {
+    width: 100% }}
+
+.atom-dock-toggle-button .atom-dock-toggle-button-inner {
+    border-radius: 0px;
+
+  &.right,
+  &.left {
+    height: 24px;
+    width: 44px }
+
+  &.top,
+  &.bottom {
+    height: 44px;
+    width: 24px }}
+
+[class*='loading-spinner'] {
+  background: none;
+  border-radius: 50%;
+  animation: spin 1s infinite cubic-bezier(0.45, 0.8, 0.65, 0.35);
+  border-style: solid;
+  border-width: 0.5em !important;
+  border-color: fade(@color-info, 10%) @color-info transparent transparent }

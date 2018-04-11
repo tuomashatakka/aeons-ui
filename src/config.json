@@ -1,0 +1,109 @@
+{
+  "display": {
+    "order": 2,
+    "title": "Display",
+    "description": "Hide unnecessary clutter",
+    "type": "object",
+    "properties": {
+      "dockTabs": {
+        "order": 1,
+        "title": "Show all tab bars",
+        "description": "Uncheck to disable docks' tab bars",
+        "type": "boolean",
+        "default": true
+      },
+      "coloredTabs": {
+        "order": 2,
+        "title": "Filled tabs coloring",
+        "description": "If enabled, tabs' states are displayed as fill colors. If disabled, a more subtle border coloring is used to display the state for tabs",
+        "type": "boolean",
+        "default": true
+      },
+      "bigHeadings": {
+        "order": 3,
+        "title": "Use large headings",
+        "description": "Toggle enlarged header elements/titles",
+        "type": "boolean",
+        "default": true
+      },
+      "overrideEditorBackground": {
+        "order": 4,
+        "title": "Use UI background in editor",
+        "description": "Overwrite the syntax theme's background color for a more consistent look across the whole editor with any syntax theme",
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "layout": {
+    "order": 1,
+    "title": "Size & layout",
+    "description": "General user interface definitions",
+    "type": "object",
+    "properties": {
+      "scale": {
+        "order": 1,
+        "title": "Spacing for UI",
+        "description": "Scale the user interface (does not affect the text editor font size)",
+        "type": "integer",
+        "default": 100,
+        "minimum": 50,
+        "maximum": 150
+      },
+      "size": {
+        "order": 2,
+        "title": "Basis for UI components' sizing",
+        "description": "Text, tabs, inputs, buttons, ...",
+        "type": "integer",
+        "default": 100,
+        "minimum": 50,
+        "maximum": 150
+      },
+      "tabHeight": {
+        "order": 3,
+        "title": "Tab Height",
+        "description": "Tab bar's height",
+        "type": "number",
+        "default": 1,
+        "enum": [
+          0.6,
+          0.8,
+          1,
+          1.2,
+          1.4,
+          1.6,
+          1.8,
+          2
+        ]
+      },
+      "statusBarHeight": {
+        "order": 4,
+        "title": "Status Bar Height",
+        "description": "Factor for the status bar's height",
+        "type": "number",
+        "default": 1,
+        "enum": [
+          0.25,
+          0.5,
+          0.75,
+          1,
+          1.25,
+          1.5
+        ]
+      }
+    }
+  },
+  "palette": {
+    "order": 3,
+    "title": "UI Color Theme",
+    "type": "object",
+    "properties": {
+      "globalTint": {
+        "order": 1,
+        "title": "Global UI Tint Color",
+        "type": "color",
+        "default": "#000000"
+      }
+    }
+  }
+}

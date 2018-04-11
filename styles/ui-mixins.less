@@ -1,78 +1,45 @@
 
-.state(@type: info) {
-  .state-fg(@type, color);
-  .state-bg(@type, background-color) }
+@duration: .3s;
+@color-transition: @duration color, @duration border-color, @duration background-color;
 
-.state-inverse(@state) {
-  .state-fg(@state, background-color);
-  .state-bg(@state, color) }
+.interactions(color, @value) {
+  .apply-state-colors(color, @value) }
 
-.text(@state, @attr: color) {
-  .state-fg(@state, @attr) }
+.interactions(background, @value) {
+  .apply-state-colors(background-color, @value) }
 
-.background(@state, @attr: background-color) {
-  .state-bg(@state, @attr) }
+.apply-state-colors(@property, @val) {
+  @key: ~"@{property}";
+  @{key}: @val;
+  transition: @color-transition;
+  &.selected,
+  &.active {
+    @{key}: lighten(@val, 3%)}
+  &:hover {
+    @{key}: lighten(@val, 5%)}
+  &.active:hover,
+  &.selected:hover {
+    @{key}: lighten(@val, 8%)}
+  &.disabled,
+  &.disabled:hover {
+    @{key}: desaturate(mix(@val, #888), 5%)}}
 
-.state-fg(normal, @attr) {
-  font-weight:  @font-weight;
-  @attr:        @text-color }
-.state-fg(subtle, @attr) {
-  font-weight:  @font-weight;
-  color:        @text-color-subtle }
-.state-fg(highlight, @attr) {
-  font-weight:  @font-weight;
-  color:        @text-color-highlight }
-.state-fg(selected, @attr) {
-  .text(highlight) }
+.interactions(@bg) {
+  background-color:  @bg;
+  transition: @color-transition;
 
-.state-fg(info, @attr) {
-  @attr: @text-color-info }
-.state-fg(success, @attr) {
-  @attr: @text-color-success }
-.state-fg(warning, @attr) {
-  @attr: @text-color-warning }
-.state-fg(error, @attr) {
-  @attr: @text-color-error }
-.state-fg(fatal, @attr) {
-  @attr: @text-color-error }
+  &.selected,
+  &.active {
+    background-color: lighten(@bg, 3%)}
 
-.state-bg(info, @attr) {
-  @attr: @background-color-info }
-.state-bg(success, @attr) {
-  @attr: @background-color-success }
-.state-bg(warning, @attr) {
-  @attr: @background-color-warning }
-.state-bg(error, @attr) {
-  @attr: @background-color-error }
-.state-bg(fatal, @attr) {
-  @attr: @background-color-error }
+  &:hover {
+    background-color: lighten(@bg, 5%)}
+  &.active:hover,
+  &.selected:hover {
+    background-color: lighten(@bg, 8%)}}
 
-.type(heading) {
-  font-family:    @font-family;
-  font-weight:    700;
-  letter-spacing: -0.05em }
+.input(focus, @bg) {
 
-.type(tabs) {
-  font-size:      @tab-font-size;
-  font-weight:    400;
-  letter-spacing: 0em }
-
-.type(active) {
-  letter-spacing: -0.04em;
-  font-weight:    700 }
-
-.type(button) {
-  .type(tabs);
-  font-weight:    300;
-  letter-spacing: 0.035em }
-
-.type(input) {
-  font-family:  @font-family;
-  font-size:    @input-font-size;
-  font-weight:  400 }
-
-.type(overlay-input) {
-  .type(input);
-  font-size:    @overlay-input-text-size;
-  line-height:  2.5em !important;
-  font-weight:  200 }
+  &:focus, &.is-focused {
+    background-color: lighten(@bg, 2%)}
+}
