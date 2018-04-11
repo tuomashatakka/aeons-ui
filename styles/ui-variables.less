@@ -8,12 +8,12 @@
 @text-color-selected:   @color-selected;
 @text-color-active:     @color-selected;
 
-@text-color-info:     @color-info;
-@text-color-success:  @color-success;
+@text-color-info:     saturate(lighten(@color-info, 5%), 5%);
+@text-color-success:  saturate(lighten(@color-success, 5%), 5%);
 @text-color-added:    @color-success;
 
-@text-color-warning:  @color-warning;
-@text-color-modified: @color-warning;
+@text-color-warning:  saturate(lighten(@color-warning, 5%), 5%);
+@text-color-modified: saturate(lighten(@color-warning, 2.5%), 5%);
 @text-color-renamed:  @color-warning;
 
 @text-color-error:    @color-error;
@@ -21,14 +21,14 @@
 
 // Backgroundno
 @background-color-info:             desaturate(darken(@color-info, 15%), 5%);
-@background-color-success:          desaturate(darken(@color-success, 25%), 6%);
-@background-color-warning:          desaturate(darken(@color-warning, 22.5%), 10%);
+@background-color-success:          desaturate(darken(@color-success, 14%), 6%);
+@background-color-warning:          desaturate(darken(@color-warning, 12%), 10%);
 @background-color-error:            saturate(darken(@color-error, 20%), 25%);
 @background-color-highlight:        lighten(@base-background-color, 4%);
 @background-color-selected:         lighten(@base-background-color, 8%);
 
 // Base
-@app-background-color:              @color-background;
+@app-background-color:              darken(@color-background, 1.5%);
 @base-background-color:             @color-background;
 @base-border-color:                 darken(@color-background, 3%);
 

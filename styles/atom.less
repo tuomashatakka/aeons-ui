@@ -57,7 +57,8 @@ atom-text-editor {
 
 atom-text-editor,
 .scrollbars-visible-always atom-text-editor {
-	.scrollbar(@scrollbar-size, desaturate(darken(@scrollbar-color, 25%), 5%)) }
+	.scrollbar(@scrollbar-size, desaturate(darken(@scrollbar-color, 25%), 5%));
+  ::-webkit-scrollbar-thumb { background: @scrollbar-color }}
 
 .scrollbar(@size, @handle-color, @background-color: transparent, @corner-radius: 4px) {
   ::-webkit-scrollbar {
@@ -67,5 +68,4 @@ atom-text-editor,
   ::-webkit-scrollbar-corner {
     background:    @background-color }
   ::-webkit-scrollbar-thumb {
-    background: 	 @handle-color;
     border-radius: @corner-radius }}
